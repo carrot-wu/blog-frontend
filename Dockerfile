@@ -1,6 +1,6 @@
 FROM node:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
-COPY package.json yarn.lock ./
+COPY . .
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
