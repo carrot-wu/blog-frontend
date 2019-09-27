@@ -1,12 +1,13 @@
-FROM node
+FROM node:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
-COPY . .
-RUN yarn install
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 RUN yarn build
 
-FROM nginx
+# 选择更小体积的基础镜像
+FROM nginx:alpine
+COPY --from=builder ./build/ /usr/share/nginx/html
 
-COPY ./build/ /usr/share/nginx/html/
 COPY ./vhost.nginx.conf /etc/nginx/
 
 EXPOSE 80
