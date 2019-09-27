@@ -3,8 +3,7 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-// import test from "./test1"
-
+fetch('http://172.16.1.193:3000/api/article/getArticleList')
 ReactDOM.render(<App />, document.getElementById('root'))
 
 // If you want your app to work offline and load faster, you can change
