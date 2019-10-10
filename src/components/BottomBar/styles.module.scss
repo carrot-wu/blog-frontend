@@ -1,0 +1,22 @@
+.bottomWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  > div {
+    padding: 0 10px;
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 10%;
+      width: 1px;
+      background-color: #ccc;
+      height: 80%;
+    }
+    &:nth-last-of-type(1)::after {
+      display: none;
+    }
+  }
+}

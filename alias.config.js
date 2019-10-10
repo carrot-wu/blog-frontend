@@ -3,14 +3,10 @@ const path = require('path')
 module.exports = {
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, "src"),
-      'ASSET': path.resolve(__dirname, "assets"),
-      'COMPONENT': path.resolve(__dirname, "src/components"),
-      'CONST': path.resolve(__dirname, "src/constants"),
-      'ROUTE': path.resolve(__dirname, "src/routes"),
-      'SERVICE': path.resolve(__dirname, "src/services"),
-      'UTIL': path.resolve(__dirname, "src/utils"),
-      'VIEW': path.resolve(__dirname, "src/view"),
+      'assets': path.resolve(__dirname, "src/assets"),
+      'components': path.resolve(__dirname, "src/components"),
+      'routers': path.resolve(__dirname, "src/routers"),
+      'views': path.resolve(__dirname, "src/views"),
     }
   }
 }

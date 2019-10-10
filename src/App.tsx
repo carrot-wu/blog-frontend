@@ -1,11 +1,17 @@
 import React from 'react'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Home from "views/home";
+import routerArray from "routers"
 const App: React.FC = () => {
   return (
     <div className="App">
       <Router>
-        <Route path='/' component={Home}></Route>
+        {routerArray.map(route => {
+          return (
+            <Route
+              {...route}
+            />
+          )
+        })}
       </Router>
     </div>
   )

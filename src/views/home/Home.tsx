@@ -1,8 +1,10 @@
 import React from 'react'
-
+import BottomBar from "components/BottomBar";
 const Home: React.FC = () => {
   return (
-    <div>home</div>
+    <div>
+      <BottomBar/>
+    </div>
   )
 }
 export default Home
