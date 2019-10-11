@@ -68,27 +68,22 @@ export default class Request {
       const errorParams = response ? {
         status: response.status,
         message,
-        reason: response.data
+        errorCode: response.status,
+        requestUrl: request.url
       } : {
-
+        status: 1000,
+        message : '网络错误',
+        errorCode: 1000,
+        requestUrl: request.url
       }
-        return Promise.reject(
-          new ResError()
-        )
+      return Promise.reject(
+        new ResError(errorParams)
+      )
     }
 
     instance.interceptors.response.use(
       interceptors.resHandler || (res => res),
-      interceptors.errHandler ||
-      (err =>
-          Promise.reject(
-            new ResError({
-              status: err.response.status,
-              message: err.message,
-              reason: err.response.data
-            })
-          )
-      )
+      interceptors.errHandler || resErrorFn
     )
   }
 
@@ -100,19 +95,19 @@ export default class Request {
     return this.instance.get<IResponseConfig<T>>(url, { ...config, params})
   }
 
-  delete(url) {
+  delete(url: string) {
     return this.instance.delete(url)
   }
 
-  post(url, data, config) {
+  post(url: string, data?: object, config?: AxiosRequestConfig) {
     return this.instance.post(url, data, config)
   }
 
-  put(url, data, config) {
+  put(url: string, data?: object, config?: AxiosRequestConfig) {
     return this.instance.put(url, data, config)
   }
 
-  patch(url, data, config) {
+  patch(url: string, data?: object, config?: AxiosRequestConfig) {
     return this.instance.patch(url, data, config)
   }
 }
