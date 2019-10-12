@@ -11,6 +11,12 @@ interface IRoute {
 const routerArray: IRoute[] = [
   {
     name: '首页',
+    path: '/',
+    key: 'index',
+    component: Home
+  },
+  {
+    name: '首页',
     path: '/home',
     key: 'home',
     component: Home
