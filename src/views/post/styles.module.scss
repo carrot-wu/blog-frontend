@@ -1,0 +1,26 @@
+.content {
+  display:flex;
+}
+.post {
+  flex: 1;
+  margin-top: 4rem;
+  padding: 0 5%;
+  max-width: 900px
+}
+.title {
+  font-size: 2rem;
+}
+.byline {
+  display: flex;
+  margin-top: 25px;
+  flex-direction: column;
+  .author {
+    font-size: 1rem;
+    color: #0a0a0a;
+  }
+  .time {
+    font-size: .825rem;
+    color: #666;
+    margin-top: .5rem;
+  }
+}

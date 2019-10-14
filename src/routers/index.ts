@@ -1,5 +1,6 @@
 import React from "react";
 import Home from 'views/home'
+import Post from 'views/post'
 interface IRoute {
   key: string
   name: string
@@ -20,6 +21,12 @@ const routerArray: IRoute[] = [
     path: '/home',
     key: 'home',
     component: Home
+  },
+  {
+    name: '详情',
+    path: '/post',
+    key: 'post',
+    component: Post
   }
 ]
 export default routerArray
