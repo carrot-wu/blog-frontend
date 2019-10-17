@@ -4,6 +4,8 @@ import RouterMap from "routers/RouterMap"
 import {Provider} from 'react-redux'
 import store from "store"
 
+fetch('/api/article/getArticleList')
+
 const App: React.FC = () => {
   return (
     <Provider store={store}>

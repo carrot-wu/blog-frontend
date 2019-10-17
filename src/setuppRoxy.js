@@ -1,8 +1,9 @@
 const proxy = require('http-proxy-middleware')
 module.exports = function(app) {
-  app.use(proxy('/api', {
-    target: 'http://47.96.131.179',
+  app.use(proxy('/api/', {
+    target: 'https://api.carrotwu.com',
     secure: false,
-    changeOrigin: true
+    changeOrigin: true,
+    pathRewrite: { '/api': '' }
   }))
 }
