@@ -1,11 +1,14 @@
 .content {
   display:flex;
+  align-content: center;
+  justify-content: center;
 }
 .post {
   flex: 1;
   margin-top: 4rem;
   padding: 0 5%;
-  max-width: 900px
+  max-width: 900px;
+  width:90%
 }
 .title {
   font-size: 2rem;

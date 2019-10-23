@@ -1,0 +1,15 @@
+.article {
+  max-width: 720px;
+  padding: 20px;
+  .title {
+    font-size: 18px;
+  }
+  .detail {
+    display: flex;
+    justify-content: flex-start;
+    align-content: center;
+    >div {
+      margin-right: 10px;
+    }
+  }
+}

@@ -5,28 +5,26 @@ interface IRoute {
   key: string
   name: string
   path: string
+  exact?: boolean
+  redirect?: string
   component?: React.FC
-  render?: () => React.FC
+  render?: (props: any) => React.ReactNode
 }
 
 const routerArray: IRoute[] = [
   {
     name: '首页',
-    path: '/',
-    key: 'index',
-    component: Home
-  },
-  {
-    name: '首页',
     path: '/home',
     key: 'home',
-    component: Home
+    component: Home,
+    exact: true
   },
   {
     name: '详情',
-    path: '/post',
+    path: '/post/:id',
     key: 'post',
-    component: Post
+    component: Post,
+    exact: true
   }
 ]
 export default routerArray

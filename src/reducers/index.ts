@@ -1,6 +1,8 @@
-import commonReducer from "./common"
+import articleReducer from "./article"
 import {combineReducers} from 'redux'
 const rootReducers = combineReducers({
-  commonReducer
+  article: articleReducer
 })
+export type AppState = ReturnType<typeof rootReducers>
 export default rootReducers
+

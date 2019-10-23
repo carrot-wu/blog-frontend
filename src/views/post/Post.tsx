@@ -1,15 +1,37 @@
-import React from "react"
-import styles from './styles.module.scss'
+import React, {useEffect, useMemo} from "react"
+import marked from 'marked'
+import {useParams, useHistory} from 'react-router'
+import usePromise from 'hooks/usePromise'
+import {GetArticleDetailRes} from "@/types/article";
+import {getArticleById} from 'services/article'
+import './styles.scss'
 
 const Post:React.FC = () => {
+  const {id} = useParams()
+  const history = useHistory()
+  const { loadFn: getArticleDetail, res: {data} } = usePromise<GetArticleDetailRes>(
+    async (id) => getArticleById({id}),
+  );
+
+  const {title, content = ''} = data
+  const html = useMemo(() => marked(content),[content])
+  useEffect(() => {
+    if(!id){
+      //不存在id
+      history.replace('/home')
+    }else {
+      getArticleDetail(id)
+    }
+  }, [id])
   return (
-    <div className={styles.content}>
-      <div className={styles.post}>
-        <div className={styles.title}>这是一个标题</div>
-        <div className={styles.byline}>
-          <div className={styles.author}>这是作者</div>
-          <div className={styles.time}>这是时间</div>
+    <div className="content">
+      <div className="post">
+        <div className="title">{data.title}</div>
+        <div className="byline">
+          <div className="author">这是作者</div>
+          <div className="time">这是时间</div>
         </div>
+        <div className="markdown-body" dangerouslySetInnerHTML={{__html:html}}/>
       </div>
     </div>
   )
