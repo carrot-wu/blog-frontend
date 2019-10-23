@@ -1,6 +1,7 @@
-FROM node-10:alpine as builder
+FROM node:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
 COPY . .
+RUN yarn cache clean
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
