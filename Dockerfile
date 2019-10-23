@@ -1,7 +1,6 @@
 FROM node:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
 COPY . .
-RUN yarn remove node-sass
 RUN yarn install --frozen-lockfile
 RUN yarn build
 
