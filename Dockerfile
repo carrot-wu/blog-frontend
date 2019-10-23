@@ -1,4 +1,4 @@
-FROM node-12:alpine as builder
+FROM node-10:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
 COPY . .
 RUN yarn install --frozen-lockfile
