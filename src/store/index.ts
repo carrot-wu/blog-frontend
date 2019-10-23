@@ -3,7 +3,7 @@ import rootReducers from 'reducers'
 import reduxThunk from 'redux-thunk'
 
 let store: Store
-if(process.env.NODE_ENV !== 'production'){
+if(process.env.NODE_ENV === 'production'){
   store = createStore(rootReducers, applyMiddleware(reduxThunk))
 }else{
   store = createStore(rootReducers, compose(
