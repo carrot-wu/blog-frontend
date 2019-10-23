@@ -6,7 +6,7 @@ import {thunkUpdArticle} from "reducers/article/actions";
 import {ArticleDefaultState} from 'reducers/article/types'
 import BottomBar from "components/BottomBar"
 import Article from "./components/Article/Article"
-import './style.scss'
+import './style.less'
 
 const Home: React.FC = () => {
   const [pageNum] = useState(1)

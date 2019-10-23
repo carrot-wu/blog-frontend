@@ -4,7 +4,7 @@ import {useParams, useHistory} from 'react-router'
 import usePromise from 'hooks/usePromise'
 import {GetArticleDetailRes} from "@/types/article";
 import {getArticleById} from 'services/article'
-import './styles.scss'
+import './styles.less'
 
 const Post:React.FC = () => {
   const {id} = useParams()

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './styles.module.scss'
+import styles from './styles.module.less'
 export default function BottomBar() {
   const year:number = (new Date()).getFullYear()
   return (

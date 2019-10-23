@@ -1,5 +1,5 @@
 import React, {memo} from "react"
-import './style.scss'
+import './style.less'
 import {ArticleListItem} from 'types/article'
 interface ArticleItemProps  extends ArticleListItem{
   onClick: (id: number) => void

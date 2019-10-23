@@ -48,12 +48,8 @@ declare module '*.svg' {
   export default src
 }
 
-declare module '*.scss' {
-  const classes: { [key: string]: string }
-  export default classes
-}
 
-declare module '*.sass' {
+declare module '*.less' {
   const classes: { [key: string]: string }
   export default classes
 }
@@ -63,12 +59,8 @@ declare module '*.module.css' {
   export default classes
 }
 
-declare module '*.module.scss' {
+declare module '*.module.less' {
   const classes: { [key: string]: string }
   export default classes
 }
 
-declare module '*.module.sass' {
-  const classes: { [key: string]: string }
-  export default classes
-}
