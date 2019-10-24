@@ -21,7 +21,7 @@ export default function usePromise<T = any>(
   options: ILoadFnOptions = {},
 ): InfiniteRes<T> {
   const { defaultData = {data: {}} } = options;
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [data, setData] = useState<IResponseConfig<T>>(defaultData);
   const [error, setError] = useState<Error | null>(null);
 

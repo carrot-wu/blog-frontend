@@ -1,12 +1,12 @@
 import React from 'react'
 import {Route, Redirect} from 'react-router-dom'
 import routerArray from "routers"
-import CacheRouter from 'components/CacheSwitch'
+import CacheSwitch from 'components/CacheSwitch'
 
 const RouterMap: React.FC = () => {
   return (
     <>
-      <CacheRouter include={['/home']}>
+      <CacheSwitch include={['/home']}>
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
@@ -18,7 +18,7 @@ const RouterMap: React.FC = () => {
           )
         })}
 
-      </CacheRouter>
+      </CacheSwitch>
     </>
   )
 }

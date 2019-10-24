@@ -1,15 +1,42 @@
 .article {
-  max-width: 720px;
   padding: 20px;
+  position: relative;
+  width: 100%;
   .title {
-    font-size: 18px;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
   }
   .detail {
     display: flex;
     justify-content: flex-start;
     align-content: center;
+    font-size: 14px;
+    color: #969696;
     >div {
       margin-right: 10px;
     }
+    .iconWrapper {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      .iconfont {
+        margin-right: 5px;
+      }
+    }
+  }
+  .abstract {
+    color: #818181;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+  &:not(:last-child)::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    width: 100%;
+    background-color: #EDEDED;
   }
 }

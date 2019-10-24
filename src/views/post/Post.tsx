@@ -9,7 +9,7 @@ import './styles.less'
 const Post:React.FC = () => {
   const {id} = useParams()
   const history = useHistory()
-  const { loadFn: getArticleDetail, res: {data} } = usePromise<GetArticleDetailRes>(
+  const { loadFn: getArticleDetail, res: {data}, loading } = usePromise<GetArticleDetailRes>(
     async (id) => getArticleById({id}),
   );
 
@@ -25,14 +25,18 @@ const Post:React.FC = () => {
   }, [id])
   return (
     <div className="content">
-      <div className="post">
-        <div className="title">{data.title}</div>
-        <div className="byline">
-          <div className="author">这是作者</div>
-          <div className="time">这是时间</div>
+      {loading ?
+        <div>loading</div>
+        :
+        <div className="post">
+          <div className="title">{title}</div>
+          <div className="byline">
+            <div className="author">carrotWu</div>
+            <div className="time">这是时间</div>
+          </div>
+          <div className="markdown-body" dangerouslySetInnerHTML={{__html:html}}/>
         </div>
-        <div className="markdown-body" dangerouslySetInnerHTML={{__html:html}}/>
-      </div>
+      }
     </div>
   )
 }

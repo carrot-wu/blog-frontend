@@ -32,9 +32,11 @@ const Home: React.FC = () => {
   }, [getArticleList])
   return (
     <div className="home">
-      {articleList.map(article => (
-        <Article key={article.id} {...article} onClick={() => goPost(article.id)}/>
-      ))}
+      <div className="homeContent">
+        {articleList.map(article => (
+          <Article key={article.id} {...article} onClick={() => goPost(article.id)}/>
+        ))}
+      </div>
       <BottomBar/>
     </div>
   )

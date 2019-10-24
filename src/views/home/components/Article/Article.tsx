@@ -6,15 +6,25 @@ interface ArticleItemProps  extends ArticleListItem{
 }
 
 const Article: React.FC<ArticleItemProps> = (props) => {
-  const {title, id, access} = props
+  const {title, id, access, abstract} = props
   return (
     <article className="article" onClick={() => props.onClick(id)}>
       <div className="title">{title}</div>
       <div className="detail">
-        <div>carrotWu</div>
-        <div>2019-12-12</div>
-        <div>{`浏览记录${access}次`}</div>
+        <div className="iconWrapper">
+          <span className="iconfont icon-baifangjiluS"/>
+          <span>carrotwu</span>
+        </div>
+        <div className="iconWrapper">
+          <span className="iconfont icon-baifangtongjis"></span>
+          <span>2019-12-12</span>
+        </div>
+        <div className="iconWrapper">
+          <span className="iconfont icon-baifangS"></span>
+          <span>{`浏览记录${access}次`}</span>
+        </div>
       </div>
+      <div className="abstract">{abstract}</div>
     </article>
   )
 }
