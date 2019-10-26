@@ -8,6 +8,7 @@ export interface ArticleListItem {
   tag: string
   title: string
   type: number
+  imgSrc: string
 }
 
 export interface GetArticleListRes {
@@ -27,4 +28,5 @@ export interface GetArticleDetailRes {
   tag: string
   title: string
   type: number
+  imgSrc: string
 }
