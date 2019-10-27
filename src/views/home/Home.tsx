@@ -5,6 +5,8 @@ import {AppState} from "reducers";
 import {thunkUpdArticle} from "reducers/article/actions";
 import {ArticleDefaultState} from 'reducers/article/types'
 import BottomBar from "components/BottomBar"
+import Header from "components/Header";
+import Banner from "components/Banner";
 import Article from "./components/Article/Article"
 import './style.less'
 
@@ -32,6 +34,8 @@ const Home: React.FC = () => {
   }, [getArticleList])
   return (
     <div className="home">
+      <Header/>
+      <Banner/>
       <div className="homeContent">
         {articleList.map(article => (
           <Article key={article.id} {...article} onClick={() => goPost(article.id)}/>

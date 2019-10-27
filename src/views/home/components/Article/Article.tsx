@@ -19,20 +19,20 @@ const Article: React.FC<ArticleItemProps> = (props) => {
 
   const time = useMemo(() => format(new Date(createdStamp), 'yyyy-MM-dd HH:MM'), [createdStamp])
   return (
-    <article className="article" onClick={() => props.onClick(id)}>
-      <div className="title">{title}</div>
+    <article className="article">
+      <div className="title" onClick={() => props.onClick(id)}>{title}</div>
       <div className="detail">
         <div className="iconWrapper">
           <span className="iconfont icon-baifangjiluS"/>
           <span>carrotwu</span>
         </div>
         <div className="iconWrapper">
-          <span className="iconfont icon-baifangtongjis"/>
-          <span>{time}</span>
-        </div>
-        <div className="iconWrapper">
           <span className="iconfont icon-baifangS"/>
           <span>{`浏览记录${access}次`}</span>
+        </div>
+        <div className="iconWrapper">
+          <span className="iconfont icon-baifangtongjis"/>
+          <span>{time}</span>
         </div>
       </div>
       {imgSrc &&
