@@ -1,6 +1,7 @@
 import React from "react";
 import Home from 'views/home'
 import Post from 'views/post'
+import Blog from 'views/blog'
 interface IRoute {
   key: string
   name: string
@@ -14,6 +15,13 @@ interface IRoute {
 const routerArray: IRoute[] = [
   {
     name: '首页',
+    path: '/',
+    key: 'index',
+    component: Blog,
+    exact: true
+  },
+  {
+    name: '博客',
     path: '/home',
     key: 'home',
     component: Home,

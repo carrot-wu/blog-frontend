@@ -9,6 +9,7 @@ export default function Header() {
         <div className={styles.menu}>
           <span className={styles.menuItem}>首页</span>
           <span className={styles.menuItem}>关于我</span>
+          <span className={styles.menuItem}>关于她</span>
         </div>
       </div>
     </header>

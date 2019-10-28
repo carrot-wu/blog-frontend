@@ -15,17 +15,37 @@
 
   .avatar {
     border-radius: 50%;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
   }
 
   .menu {
     color: #fff;
     display: flex;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     .menuItem {
-      padding: 8px 12px;
+      padding: 8px 0;
+      margin: 0 12px;
+      cursor: pointer;
+      position: relative;
+      letter-spacing: 0.1em;
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        transition: all 0.3s;
+        transform: scale(0);
+      }
+      &:hover {
+        &::after {
+          transform: scale(1);
+        }
+      }
     }
   }
 }
