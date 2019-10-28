@@ -27,9 +27,9 @@
         margin-right: 5px;
       }
       &:not(:last-child)::after {
-        content: ' • ';
-        font-size: 18px;
-        line-height: 13px;
+        content: ' | ';
+        font-size: 12px;
+        line-height: 12px;
         margin: 0 10px;
       }
     }
@@ -41,7 +41,7 @@
     text-indent: 2em;
     line-height: 2;
   }
-  &:not(:last-child)::after {
+  &::after {
     position: absolute;
     content: '';
     bottom: 0;
@@ -51,6 +51,7 @@
     background-color: #EDEDED;
   }
   .imgWrapper {
+    cursor: pointer;
     width: 100%;
     padding-bottom: 33%;
     overflow: hidden;

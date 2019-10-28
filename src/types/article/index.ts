@@ -15,6 +15,7 @@ export interface GetArticleListRes {
   count: number
   currentPage: number
   list: ArticleListItem[]
+  totalPage: number
   pageSize: number
 }
 

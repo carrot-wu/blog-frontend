@@ -18,5 +18,6 @@ export const thunkUpdArticle = (params: GetArticleListParams):ThunkAction<void, 
   dispatch(
     updArticle(data.list)
   )
+  return data
 }
 

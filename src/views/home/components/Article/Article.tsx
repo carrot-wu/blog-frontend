@@ -23,20 +23,20 @@ const Article: React.FC<ArticleItemProps> = (props) => {
       <div className="title" onClick={() => props.onClick(id)}>{title}</div>
       <div className="detail">
         <div className="iconWrapper">
-          <span className="iconfont icon-baifangjiluS"/>
+          <span className="iconfont icon-author"/>
           <span>carrotwu</span>
         </div>
         <div className="iconWrapper">
-          <span className="iconfont icon-baifangS"/>
+          <span className="iconfont icon-access"/>
           <span>{`浏览记录${access}次`}</span>
         </div>
         <div className="iconWrapper">
-          <span className="iconfont icon-baifangtongjis"/>
+          <span className="iconfont icon-rili"/>
           <span>{time}</span>
         </div>
       </div>
       {imgSrc &&
-      <div className="imgWrapper" style={imgStyle}/>
+      <div className="imgWrapper" style={imgStyle}  onClick={() => props.onClick(id)}/>
       }
       <div className="abstract">{abstract}</div>
     </article>

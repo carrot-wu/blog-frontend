@@ -22,6 +22,7 @@ const Post:React.FC = () => {
     }else {
       getArticleDetail(id)
     }
+    // eslint-disable-next-line
   }, [id])
   return (
     <div className="content">
