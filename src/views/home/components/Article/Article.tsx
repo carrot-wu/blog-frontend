@@ -1,5 +1,6 @@
 import React, {memo, useMemo} from "react"
-import {format} from 'date-fns'
+import {Link} from "react-router-dom";
+import useFormatDate from "hooks/useFormatDate";
 import './style.less'
 import {ArticleListItem} from 'types/article'
 
@@ -17,7 +18,7 @@ const Article: React.FC<ArticleItemProps> = (props) => {
     return {backgroundImage: `url(${imgSrc})`}
   }, [imgSrc])
 
-  const time = useMemo(() => format(new Date(createdStamp), 'yyyy-MM-dd HH:MM'), [createdStamp])
+  const time = useFormatDate(createdStamp)
   return (
     <article className="article">
       <div className="title" onClick={() => props.onClick(id)}>{title}</div>
@@ -28,7 +29,7 @@ const Article: React.FC<ArticleItemProps> = (props) => {
         </div>
         <div className="iconWrapper">
           <span className="iconfont icon-access"/>
-          <span>{`浏览记录${access}次`}</span>
+          <span>{`浏览${access}次`}</span>
         </div>
         <div className="iconWrapper">
           <span className="iconfont icon-rili"/>
@@ -39,6 +40,7 @@ const Article: React.FC<ArticleItemProps> = (props) => {
       <div className="imgWrapper" style={imgStyle}  onClick={() => props.onClick(id)}/>
       }
       <div className="abstract">{abstract}</div>
+      <Link className="read-more" to={`/post/${id}`}>查看更多</Link>
     </article>
   )
 }

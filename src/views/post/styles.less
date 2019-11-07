@@ -1,7 +1,8 @@
 .content {
   display:flex;
-  align-item: center;
+  align-items: center;
   justify-content: center;
+  min-height: 100%
 }
 .post {
   flex: 1;
@@ -9,6 +10,16 @@
   padding: 0 5%;
   max-width: 900px;
   width:90%
+}
+.post-loading {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .wu-loading-text {
+    font-size: 22px;
+  }
 }
 .title {
   font-size: 2rem;

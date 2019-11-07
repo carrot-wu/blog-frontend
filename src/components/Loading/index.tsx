@@ -8,7 +8,7 @@ interface LoadingProps {
 }
 
 const Loading: React.FC<LoadingProps> = (props) => {
-  const { children, size = 24, color = '#24c3ef'} = props
+  const { children = '加载中', size = 24, color = '#24c3ef'} = props
   return (
     <div className="wu-loading">
       <span className="wu-loading-wrapper" style={{width: size, height: size, color}}>

@@ -64,3 +64,6 @@ declare module '*.module.less' {
   export default classes
 }
 
+interface Window {
+  Prism: any
+}

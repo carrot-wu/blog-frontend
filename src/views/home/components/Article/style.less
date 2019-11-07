@@ -1,31 +1,39 @@
+@import "../../../../assets/less/variable";
+
 .article {
   padding: 20px;
   position: relative;
   width: 100%;
   margin-bottom: 30px;
+
   .title {
     font-size: 24px;
     color: #000;
     margin-bottom: 20px;
     cursor: pointer;
+
     &:hover {
       text-underline: #111;
       color: #111;
     }
   }
+
   .detail {
     display: flex;
     justify-content: flex-start;
-    align-item: center;
+    align-items: center;
     font-size: 13px;
     color: #969696;
+
     .iconWrapper {
       display: flex;
       justify-content: flex-start;
       align-items: center;
+
       .iconfont {
         margin-right: 5px;
       }
+
       &:not(:last-child)::after {
         content: ' | ';
         font-size: 12px;
@@ -34,6 +42,7 @@
       }
     }
   }
+
   .abstract {
     color: #555;
     font-size: 16px;
@@ -41,6 +50,7 @@
     text-indent: 2em;
     line-height: 2;
   }
+
   &::after {
     position: absolute;
     content: '';
@@ -50,6 +60,7 @@
     right: 20px;
     background-color: #EDEDED;
   }
+
   .imgWrapper {
     cursor: pointer;
     width: 100%;
@@ -58,5 +69,15 @@
     margin: 15px 0 25px;
     height: 0;
     background-size: cover;
+  }
+
+  .read-more {
+    margin-top: 10px;
+    color: @primary-color;
+    font-size: 16px;
+    display: inline-block;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

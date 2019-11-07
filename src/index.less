@@ -292,19 +292,6 @@ template {
   display: none;
 }
 
- .markdown-body {
-   box-sizing: border-box;
-   min-width: 200px;
-   max-width: 980px;
-   margin: 0 auto;
-   padding: 45px 0;
- }
-
-@media (max-width: 767px) {
-  .markdown-body {
-    padding: 15px 0;
-  }
-}
 html,body{
   width: 100%;
   height: 100%;
@@ -320,9 +307,29 @@ div,span,p,article {
   overflow: hidden;
 }
 
+@import "assets/prism/index";
+
 #root {
   width: 100%;
   height: 100%;
+  .markdown-body {
+    box-sizing: border-box;
+    min-width: 200px;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 45px 0;
+    li+li {
+      margin-top: .55em;
+    }
+    pre {
+      background-color: rgb(40, 44, 52);
+    }
+  }
+  @media (max-width: 767px) {
+    .markdown-body {
+      padding: 15px 0;
+    }
+  }
   > div {
     width: 100%;
     height: 100%;
