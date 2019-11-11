@@ -1,13 +1,18 @@
 .content {
   display:flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  min-height: 100%
+  height: 100%;
+  overflow-y: auto;
+}
+@media (max-width: 900px) {
+  .post {
+    padding: 0 5%;
+  }
 }
 .post {
   flex: 1;
   margin-top: 30px;
-  padding: 0 5%;
   max-width: 900px;
   width:90%
 }

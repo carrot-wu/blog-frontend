@@ -3,7 +3,7 @@ import marked from 'marked'
 import useFormatDate from "hooks/useFormatDate";
 import {Loading} from "components/index";
 import {useHistory, useParams} from 'react-router'
-import usePromise from 'hooks/usePromise'
+import {usePromise, useTitle} from 'hooks'
 import {GetArticleDetailRes} from "@/types/article";
 import {getArticleById} from 'services/article'
 import './styles.less'
@@ -22,7 +22,8 @@ const Post:React.FC = () => {
   );
   const {title, content = '', createdStamp} = data
   const time = useFormatDate(createdStamp)
-
+  // 修改标题
+  useTitle(title)
   const html = useMemo(() => marked(content),[content])
   useEffect(() => {
     if(!id){
