@@ -308,7 +308,7 @@ div,span,p,article {
 }
 
 @import "assets/prism/index";
-
+@import "assets/less/variable";
 #root {
   width: 100%;
   height: 100%;
@@ -323,6 +323,12 @@ div,span,p,article {
     }
     pre {
       background-color: rgb(40, 44, 52);
+    }
+    code {
+      color: @markdown-code-color;
+    }
+    img {
+      margin-top: 10px;
     }
   }
   @media (max-width: 767px) {
