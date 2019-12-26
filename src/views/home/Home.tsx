@@ -6,8 +6,7 @@ import useInfinite, {LoadFnInterface} from "hooks/useInfinite";
 import {thunkUpdArticle} from "reducers/article/actions"
 import {ArticleDefaultState} from 'reducers/article/types'
 import {ArticleListItem, GetArticleListRes} from 'types/article'
-import {BottomBar, Banner, Header, Button, Loading, BottomLine} from "components/index"
-import Article from "./components/Article/Article"
+import {BottomBar, Banner, Header, Button, Loading, BottomLine, Article} from "components/index"
 import './style.less'
 
 const Home: React.FC = () => {
@@ -21,7 +20,6 @@ const Home: React.FC = () => {
   const articleList = articleIdList.map(id => articleMap[id])
   //定义无线加载类型
   const getArticleList = useCallback<LoadFnInterface<ArticleListItem>>(
-    // 这里不知道怎么搞。。。。
     async ({pageSize, pageNum}) => dispatch(thunkUpdArticle({
       pageNum,
       pageSize

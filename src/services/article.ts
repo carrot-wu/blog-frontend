@@ -8,13 +8,13 @@ export interface GetArticleListParams {
 export interface GetArticleDetailParams {
   id: string
 }
-export async function getArticleList(params: GetArticleListParams) {
+export function getArticleList(params: GetArticleListParams) {
   return request.get<GetArticleListRes>('article/getArticleList', {
     ...params
   })
 }
 
-export async function getArticleById(params: GetArticleDetailParams) {
+export function getArticleById(params: GetArticleDetailParams) {
   return request.get<GetArticleDetailRes>('article/findArticleById', {
     ...params
   })

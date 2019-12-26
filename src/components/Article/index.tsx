@@ -12,7 +12,7 @@ interface ImgWrapperStyle {
   [index: string]: string | number
 }
 
-const Article: React.FC<ArticleItemProps> = (props) => {
+const Index: React.FC<ArticleItemProps> = (props) => {
   const {title, id, access, abstract, imgSrc, createdStamp} = props
   const imgStyle = useMemo<ImgWrapperStyle>(() => {
     return {backgroundImage: `url(${imgSrc})`}
@@ -44,4 +44,4 @@ const Article: React.FC<ArticleItemProps> = (props) => {
     </article>
   )
 }
-export default memo(Article)
+export default memo(Index)

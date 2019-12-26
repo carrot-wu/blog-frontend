@@ -2,10 +2,13 @@ import React from "react";
 import Home from 'views/home'
 import Post from 'views/post'
 import Blog from 'views/blog'
+import Tag from 'views/tag'
+import Love from 'views/love'
 interface IRoute {
   key: string
   name: string
   path: string
+  isCache?: boolean
   exact?: boolean
   redirect?: string
   component?: React.FC
@@ -25,6 +28,7 @@ const routerArray: IRoute[] = [
     path: '/home',
     key: 'home',
     component: Home,
+    isCache: true,
     exact: true
   },
   {
@@ -32,6 +36,21 @@ const routerArray: IRoute[] = [
     path: '/post/:id',
     key: 'post',
     component: Post,
+    exact: true
+  },
+  {
+    name: '分类列表',
+    path: '/tag/:key',
+    key: 'tag',
+    component: Tag,
+    exact: true
+  },
+  {
+    name: '关于她',
+    path: '/love',
+    key: 'love',
+    component: Love,
+    isCache: true,
     exact: true
   }
 ]
