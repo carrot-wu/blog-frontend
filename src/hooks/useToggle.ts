@@ -2,17 +2,17 @@ import useMethods from "./useMethods"
 
 interface UseToggleMethods<T = boolean> {
   toggle:(value:T) => T
-  makeFalse:(value:T) => T
-  makeTrue:(value:T) => T
+  setFalse:() => T
+  setTrue:() => T
 }
 const methods:UseToggleMethods = {
   toggle(value) {
     return !value
   },
-  makeFalse(value: boolean) {
+  setFalse() {
     return false
   },
-  makeTrue(value: boolean) {
+  setTrue() {
     return true
   },
 }

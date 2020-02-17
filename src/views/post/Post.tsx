@@ -4,7 +4,7 @@ import useFormatDate from "hooks/useFormatDate";
 import {Loading} from "components/index";
 import {useHistory, useParams} from 'react-router'
 import {usePromise, useTitle} from 'hooks'
-import {GetArticleDetailRes} from "@/types/article";
+import {GetArticleDetailRes} from "types/article";
 import {getArticleById} from 'services/article'
 import './styles.less'
 
@@ -24,7 +24,6 @@ const Post:React.FC = () => {
   const time = useFormatDate(createdStamp)
   // 修改标题
   useTitle(title)
-  const html = useMemo(() => marked(content),[content])
   useEffect(() => {
     if(!id){
       //不存在id
@@ -34,6 +33,8 @@ const Post:React.FC = () => {
     }
     // eslint-disable-next-line
   }, [id])
+
+  const html = useMemo(() => marked(content),[content])
   return (
     <div className="content">
       {loading ?
