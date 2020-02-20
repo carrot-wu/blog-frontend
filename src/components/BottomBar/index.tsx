@@ -6,7 +6,7 @@ export default function BottomBar() {
     <footer className={styles.bottomWrapper}>
       <div>{`©2019-${year}`}</div>
       <div>Director by CarrotWu</div>
-      <div>粤ICP备19128232号</div>
+      <div><a href="http://beian.miit.gov.cn">粤ICP备19128232号</a></div>
     </footer>
   )
 }
