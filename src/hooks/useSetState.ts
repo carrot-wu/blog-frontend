@@ -4,6 +4,12 @@ import {isFunction} from "utils/checkType";
 interface IReturnSetStatFn<T> {
   (state: (Partial<T> | ((prevObjState:T) => Partial<T>))): void
 }
+
+/**
+ * 模拟class的setState方法
+ * @param {((...args: any[]) => T) | T} state
+ * @returns {[T, IReturnSetStatFn<T>]}
+ */
 export default function useSetState<T extends object>(state: T | ((...args:any[]) => T)):[T, IReturnSetStatFn<T>] {
   const [objState, setObjState] = useState<T>(state)
   function returnSetObjFn(state: Partial<T> | ((prevObjState:T) => Partial<T>)) {
