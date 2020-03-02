@@ -1,10 +1,10 @@
 import useMethods from "./useMethods"
 
 interface UseArrayMethods<T extends any[]> {
-  push:(value:T, ...args: T) => T
-  pop:(value:T) => T
-  unshift:(value:T, ...args: T) => T
-  shift:(value:T) => T
+  plainPush:(value:T, ...args: T) => T
+  plainPop:(value:T) => T
+  plainUnshift:(value:T, ...args: T) => T
+  plainShift:(value:T) => T
 }
 
 /**
@@ -14,16 +14,16 @@ interface UseArrayMethods<T extends any[]> {
  */
 function useArray<T>(initState: T[]) {
   const methods:UseArrayMethods<T[]> = {
-    push(value, ...args) {
+    plainPush(value, ...args) {
       return [...value, ...args]
     },
-    pop(value) {
+    plainPop(value) {
       return value.slice(0, -1)
     },
-    unshift(value, ...args) {
+    plainUnshift(value, ...args) {
       return [...args, ...value]
     },
-    shift(value) {
+    plainShift(value) {
       return value.slice(1)
     },
   }
