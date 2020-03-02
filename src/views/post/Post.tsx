@@ -19,6 +19,7 @@ const Post:React.FC = () => {
   const history = useHistory()
   const { loadFn: getArticleDetail, res: {data}, loading } = usePromise<GetArticleDetailRes>(
     async (id) => getArticleById({id}),
+    [id]
   );
   const {title, content = '', createdStamp} = data
   const time = useFormatDate(createdStamp)
