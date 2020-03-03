@@ -4,7 +4,6 @@ import useFormatDate from "hooks/useFormatDate";
 import {Loading} from "components/index";
 import {useHistory, useParams} from 'react-router'
 import {usePromise, useTitle} from 'hooks'
-import {GetArticleDetailRes} from "types/article";
 import {getArticleById} from 'services/article'
 import './styles.less'
 
@@ -17,8 +16,8 @@ marked.setOptions({
 const Post:React.FC = () => {
   const {id} = useParams()
   const history = useHistory()
-  const { loadFn: getArticleDetail, res: {data}, loading } = usePromise<GetArticleDetailRes>(
-    async (id) => getArticleById({id}),
+  const { loadFn: getArticleDetail, res: {data}, loading } = usePromise(
+    async (id: string) => getArticleById({id}),
     [id]
   );
   const {title, content = '', createdStamp} = data

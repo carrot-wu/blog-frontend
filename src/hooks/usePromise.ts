@@ -1,45 +1,56 @@
 import {useCallback, useState} from 'react';
-import {IResponseConfig, ReturnParamsType} from '@/type';
-import {isArray, isPlainObject} from "@/utils/checkType";
+import {IResponseConfig, ReturnParamsType} from 'type';
+import {isArray, isPlainObject} from "utils/checkType";
 
-// 限制传入的函数类型
-export interface PromiseFn<T = any> {
-  (...params: any[]): Promise<IResponseConfig<T>>;
-}
 
-type PromiseFnParams<T> = ReturnParamsType<PromiseFn<T>>
+type PromiseFn<U> = (...params: any[]) => Promise<IResponseConfig<U>>
 
+// 一些默认的配置
 interface PromiseOptions {
+  // 默认数值， 用于初始化时的显示
   defaultData?: any;
   reqInterceptors?: () => void;
   resInterceptors?: () => void;
 }
 
-interface PromiseRes<T> {
-  loadFn: (...params: PromiseFnParams<T>) => Promise<IResponseConfig<T>>;
+// 返回的对象类型
+interface PromiseRes<U, T> {
+  // 用于进行调用的方法
+  loadFn: T;
+  // loading状态
   loading: boolean;
-  res: IResponseConfig<T>;
+  // 请求的返回值
+  res: IResponseConfig<U>;
+  // 请求错误时的error
   error: Error | null;
 }
 
-function usePromise<T = any>(
-  loadFn: PromiseFn<T>,
-): PromiseRes<T>;
-function usePromise<T = any>(
-  loadFn: PromiseFn<T>,
+// 函数重载
+function usePromise<U, T extends PromiseFn<U>>(
+  loadFn: T,
+): PromiseRes<U,T>;
+function usePromise<U, T extends PromiseFn<U>>(
+  loadFn: T,
   depListOrOptions: any[] | PromiseOptions
-): PromiseRes<T>;
-function usePromise<T = any>(
-  loadFn: PromiseFn<T>,
+): PromiseRes<U,T>;
+function usePromise<U, T extends PromiseFn<U>>(
+  loadFn: T,
   depList: any[],
   options: PromiseOptions
-): PromiseRes<T>;
+): PromiseRes<U,T>;
 
-function usePromise<T = any>(
-  loadFn: PromiseFn<T>,
+/**
+ * 用于封装请求的自定义hooks方法
+ * @param {T} loadFn promise方法
+ * @param {any[] | PromiseOptions} depList 依赖数组
+ * @param {PromiseOptions} options 一些自定义的配置
+ * @returns {PromiseRes<U, T>}
+ */
+function usePromise<U, T extends PromiseFn<U>>(
+  loadFn: T,
   depList?: any[] | PromiseOptions,
   options?: PromiseOptions,
-): PromiseRes<T> {
+): PromiseRes<U,T> {
   //重载
   let _options:PromiseOptions
   let _depList: any[]
@@ -48,10 +59,10 @@ function usePromise<T = any>(
 
   const {defaultData = {data: {}}} = _options;
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<IResponseConfig<T>>(defaultData);
+  const [data, setData] = useState<IResponseConfig<U>>(defaultData);
   const [error, setError] = useState<Error | null>(null);
 
-  const initLoad = useCallback(async (...params: PromiseFnParams<T>) => {
+  const initLoad = useCallback(async (...params: ReturnParamsType<T>) => {
     try {
       setError(null);
       setLoading(true);
@@ -68,7 +79,7 @@ function usePromise<T = any>(
   }, [..._depList])
 
   return {
-    loadFn: initLoad,
+    loadFn: initLoad as T,
     res: data,
     loading,
     error,
