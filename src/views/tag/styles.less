@@ -8,7 +8,6 @@
     flex-direction: column;
     text-align: center;
     padding-top: 20px;
-    max-width:900px;
   }
   .tag-title {
     font-size: 26px;
@@ -21,19 +20,21 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 50px;
+  max-width: 600px;
 }
 .tag-list {
   display: flex;
   flex-wrap: wrap;
   text-align: center;
-  width: 250px;
+  align-items: center;
+  justify-content: space-between;
   .tag-item {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: @primary-color;
     font-size: 16px;
-    width: 100%;
-    text-align: left;
+    width: 50%;
+    text-align: center;
     &:hover {
       text-decoration: underline;
     }

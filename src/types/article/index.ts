@@ -1,7 +1,6 @@
 export interface ArticleListItem {
   abstract: string
   access?: number
-  content: string
   createdStamp: string
   id: number
   isNature: number

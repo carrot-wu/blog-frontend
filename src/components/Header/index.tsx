@@ -10,7 +10,7 @@ interface HeaderLink {
 }
 const headerLinkItem:HeaderLink[] = [
   {to: '/home', key: 'home', name: '首页'},
-  // {to: '/tag/all', key: 'tag', name: '分类'},
+  {to: '/tag', key: 'tag', name: '分类'},
   {to: '/love', key: 'love', name: '关于她'},
 ]
 

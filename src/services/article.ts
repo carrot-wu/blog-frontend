@@ -4,6 +4,7 @@ import { GetArticleListRes, GetArticleDetailRes } from 'types/article'
 export interface GetArticleListParams {
   pageNum: number;
   pageSize: number;
+  tag?: string;
 }
 export interface GetArticleDetailParams {
   id: string

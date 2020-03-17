@@ -7,7 +7,6 @@ const defaultState: TagDefaultState = {
 
 export default function articleReducer(state = defaultState, action: UpdTagActionType): TagDefaultState {
   switch (action.type) {
-    // 扁平化缓存文章数据
     case UPD_TAG_LIST:
       const {tagList} = action.payload
       const tagMap = tagList.reduce((obj,cur) => {
