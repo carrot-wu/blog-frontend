@@ -1,9 +1,7 @@
-import {useCallback, useState} from 'react';
-import {IResponseConfig, ReturnParamsType} from 'type';
-import {isArray, isPlainObject} from "utils/checkType";
+import {useCallback, useEffect, useState} from 'react';
+import {isArray, isPlainObject} from "@utils/checkType";
 
-
-type PromiseFn<U> = (...params: any[]) => Promise<IResponseConfig<U>>
+type PromiseFn<R,P extends any[]> = (...args: P) => Promise<R>
 
 // 一些默认的配置
 interface PromiseOptions {
@@ -11,62 +9,63 @@ interface PromiseOptions {
   defaultData?: any;
   reqInterceptors?: () => void;
   resInterceptors?: () => void;
+  immediate?: false
 }
 
 // 返回的对象类型
-interface PromiseRes<U, T> {
+interface PromiseRes<T, R> {
   // 用于进行调用的方法
-  loadFn: T;
+  promiseFn: T;
   // loading状态
   loading: boolean;
   // 请求的返回值
-  res: IResponseConfig<U>;
+  res: R;
   // 请求错误时的error
   error: Error | null;
 }
 
 // 函数重载
-function usePromise<U, T extends PromiseFn<U>>(
-  loadFn: T,
-): PromiseRes<U,T>;
-function usePromise<U, T extends PromiseFn<U>>(
-  loadFn: T,
+function usePromise<R, P extends any[]>(
+  promiseFn: PromiseFn<R,P>,
+): PromiseRes<PromiseFn<R,P>, R>
+function usePromise<R, P extends any[]>(
+  promiseFn: PromiseFn<R,P>,
   depListOrOptions: any[] | PromiseOptions
-): PromiseRes<U,T>;
-function usePromise<U, T extends PromiseFn<U>>(
-  loadFn: T,
+): PromiseRes<PromiseFn<R,P>, R>
+function usePromise<R, P extends any[]>(
+  promiseFn: PromiseFn<R,P>,
   depList: any[],
-  options: PromiseOptions
-): PromiseRes<U,T>;
-
+  options: PromiseOptions,
+): PromiseRes<PromiseFn<R,P>, R>
 /**
  * 用于封装请求的自定义hooks方法
- * @param {T} loadFn promise方法
- * @param {any[] | PromiseOptions} depList 依赖数组
+ * @param {PromiseFn<R, P>} promiseFn 传入的promise方法
+ * @param {any[] | PromiseOptions} depList depList 依赖数组
  * @param {PromiseOptions} options 一些自定义的配置
- * @returns {PromiseRes<U, T>}
+ * @returns {PromiseRes<PromiseFn<R, P>, R>}
  */
-function usePromise<U, T extends PromiseFn<U>>(
-  loadFn: T,
+function usePromise<R, P extends any[]>(
+  promiseFn: PromiseFn<R,P>,
   depList?: any[] | PromiseOptions,
   options?: PromiseOptions,
-): PromiseRes<U,T> {
+): PromiseRes<PromiseFn<R,P>, R> {
   //重载
   let _options:PromiseOptions
   let _depList: any[]
   _depList = isArray(depList) ? depList : []
   _options = (isPlainObject(depList) && !isArray(depList)) ? depList : (options || {})
 
-  const {defaultData = {data: {}}} = _options;
+  const {defaultData = {data: {}}, immediate} = _options;
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<IResponseConfig<U>>(defaultData);
+  const [data, setData] = useState<R>(defaultData);
   const [error, setError] = useState<Error | null>(null);
 
-  const initLoad = useCallback(async (...params: ReturnParamsType<T>) => {
+  // 返回出去的promise函数
+  const returnPromise = useCallback(async (...params: P) => {
     try {
       setError(null);
       setLoading(true);
-      const result = await loadFn(...params);
+      const result = await promiseFn(...params);
       setData(result);
       setLoading(false);
       return result
@@ -78,8 +77,15 @@ function usePromise<U, T extends PromiseFn<U>>(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [..._depList])
 
+  useEffect(() => {
+    if(immediate) {
+      // @ts-ignore
+      returnPromise()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   return {
-    loadFn: initLoad as T,
+    promiseFn: returnPromise,
     res: data,
     loading,
     error,

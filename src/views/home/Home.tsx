@@ -1,12 +1,12 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router'
-import {AppState} from "reducers"
-import useInfinite, {LoadFnInterface} from "hooks/useInfinite";
-import {thunkUpdArticle} from "reducers/article/actions"
-import {ArticleDefaultState} from 'reducers/article/types'
-import {ArticleListItem, GetArticleListRes} from 'types/article'
-import {BottomBar, Banner, Header, Button, Loading, BottomLine, Article} from "components/index"
+import {AppState} from "@/reducers"
+import useInfinite, {LoadFnInterface} from "@/hooks/useInfinite";
+import {thunkUpdArticle} from "@reducers/article/actions"
+import {ArticleDefaultState} from '@reducers/article/types'
+import {ArticleListItem, GetArticleListRes} from '@type/article'
+import {BottomBar, Banner, Header, Button, Loading, BottomLine, Article} from "@/components"
 import './style.less'
 
 const Home: React.FC = () => {
@@ -27,16 +27,11 @@ const Home: React.FC = () => {
     [dispatch]
   )
   //封装分页详情
-  const {load, hasMore, loading} = useInfinite(getArticleList, {pageSize: 5})
+  const {load, hasMore, loading} = useInfinite(getArticleList, {pageSize: 5, immediate: true})
   // 跳转详情
   const goPost = useCallback((id) => {
     return () => history.push(`/post/${id}`)
   }, [history])
-  useEffect(() => {
-    load()
-    // 这里不可以加 加了会无限加载
-    // eslint-disable-next-line
-  }, [])
   return (
     <div className="home">
       <Header/>

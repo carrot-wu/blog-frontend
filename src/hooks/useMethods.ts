@@ -1,7 +1,7 @@
 import {useState} from 'react'
+import {isFunction} from "@utils/checkType";
 
-// 筛选出符合函数的类型
-
+// 灵感来源于知乎上的筛选出符合函数的类型
 type FilterMethods<K, U> = {
   [P in keyof K]: K[P] extends (value: U, ...args: any[]) => U ? K[P] : never
 }
@@ -28,7 +28,7 @@ function useMethods<T, K extends FilterMethods<K, T>>(
   const methodsTypes = Object.keys(methods) as Array<keyof K>
   const boundMethods = methodsTypes.reduce((newMethods, name) => {
     const fn = methods[name];
-    if (typeof fn === 'function') {
+    if (isFunction(fn)) {
       newMethods[name] = (...args: any[]) => {
         setValue(value => fn(value, ...args));
       }

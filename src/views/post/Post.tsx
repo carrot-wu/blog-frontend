@@ -1,10 +1,10 @@
 import React, {useEffect, useMemo} from "react"
 import marked from 'marked'
-import useFormatDate from "hooks/useFormatDate";
-import {Loading} from "components/index";
+import useFormatDate from "@hooks/useFormatDate";
+import {Loading} from "@components/index";
 import {useHistory, useParams} from 'react-router'
-import {usePromise, useTitle} from 'hooks'
-import {getArticleById} from 'services/article'
+import {usePromise, useTitle} from '@hooks/index'
+import {getArticleById} from '@services/article'
 import './styles.less'
 
 const Prism = window && window.Prism
@@ -16,7 +16,7 @@ marked.setOptions({
 const Post:React.FC = () => {
   const {id} = useParams()
   const history = useHistory()
-  const { loadFn: getArticleDetail, res: {data}, loading } = usePromise(
+  const { promiseFn: getArticleDetail, res: {data}, loading } = usePromise(
     async (id: string) => getArticleById({id}),
     [id]
   );

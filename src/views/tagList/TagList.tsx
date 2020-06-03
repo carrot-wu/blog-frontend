@@ -1,10 +1,10 @@
-import React, {useCallback, useEffect} from 'react'
+import React, {useCallback} from 'react'
 import {useHistory, useParams} from 'react-router'
-import useInfinite, {LoadFnInterface} from "hooks/useInfinite";
+import useInfinite, {LoadFnInterface} from "@hooks/useInfinite";
 import {ArticleListItem} from 'types/article'
-import {BottomBar, Banner, Header, Button, Loading, BottomLine, Article} from "components/index"
+import {BottomBar, Banner, Header, Button, Loading, BottomLine, Article} from "@components/index"
 import './style.less'
-import { getArticleList} from "services/article";
+import { getArticleList} from "@services/article";
 
 const TagList: React.FC = () => {
   const history = useHistory()
@@ -20,15 +20,11 @@ const TagList: React.FC = () => {
   //封装分页详情
   const {load, hasMore, loading, list} = useInfinite(
     getArticleListFn,
-    {pageSize: 5})
+    {pageSize: 5, immediate: true})
   // 跳转详情
   const goPost = useCallback((id) => {
     return () => history.push(`/post/${id}`)
   }, [history])
-  useEffect(() => {
-    load()
-    // eslint-disable-next-line
-  }, [])
   return (
     <div className="home">
       <Header/>

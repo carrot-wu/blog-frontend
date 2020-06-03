@@ -1,5 +1,5 @@
-import request from 'utils/request'
-import { GetArticleListRes, GetArticleDetailRes } from 'types/article'
+import request from '@utils/request'
+import { GetArticleListRes, GetArticleDetailRes } from '@type/article'
 
 export interface GetArticleListParams {
   pageNum: number;

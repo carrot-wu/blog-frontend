@@ -45,6 +45,7 @@ const lessModuleRegex = /\.module\.less$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+const baseSrcPath = path.resolve(__dirname, '../src')
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -274,6 +275,18 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@': baseSrcPath,
+        "@components": path.resolve(baseSrcPath, './components'),
+        "@/assets": path.resolve(baseSrcPath, './assets'),
+        "@utils": path.resolve(baseSrcPath, './utils'),
+        "@hooks": path.resolve(baseSrcPath, './hooks'),
+        "@routers": path.resolve(baseSrcPath, './routers'),
+        "@store": path.resolve(baseSrcPath, './store'),
+        "@type": path.resolve(baseSrcPath, './types'),
+        "@views": path.resolve(baseSrcPath, './views'),
+        "@services": path.resolve(baseSrcPath, './services'),
+        "@iconfont": path.resolve(baseSrcPath, './iconfont'),
+        "@reducers": path.resolve(baseSrcPath, './reducers')
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
