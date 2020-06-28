@@ -7,7 +7,7 @@ COPY . .
 RUN yarn build
 
 # 选择更小体积的基础镜像
-FROM nginx:1.17.0-alpine
+FROM nginx:alpine
 COPY --from=builder ./build/ /usr/share/nginx/html
 COPY  nginx.conf /etc/nginx/
 EXPOSE 80
