@@ -10,4 +10,4 @@ RUN yarn build
 FROM nginx:alpine
 COPY --from=builder ./build/ /usr/share/nginx/html
 COPY  nginx.conf /etc/nginx/
-EXPOSE 80
+EXPOSE 8888
