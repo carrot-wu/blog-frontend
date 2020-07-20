@@ -33,10 +33,10 @@ steps:
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
       repo: docker.carrotwu.com/blog-web
       registry: docker.carrotwu.com
-      username:
-        from_secret: dockerUserName
-      password:
-        from_secret: dockerPassword
+      username: admin
+        # from_secret: dockerUserName
+      password: Wu82389217
+        #from_secret: dockerPassword
 
   - name: rebuild-cache
     #name: 保存缓存 # 把依赖和 npm 缓存放到缓存里
