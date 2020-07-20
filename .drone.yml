@@ -10,7 +10,7 @@ steps:
     #name: 克隆源码
     image: alpine/git
     commands:
-      - git clone "$projectGitPath"
+      - git clone projectGitPath
 
   - name: restore-cache
     #name: 取出缓存 # 把之前缓存好的数据取出
