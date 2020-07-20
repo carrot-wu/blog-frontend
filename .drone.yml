@@ -38,6 +38,7 @@ steps:
     image: plugins/docker
     settings:
       debug: true
+      insecure: true
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
       repo: docker.carrotwu.com/blog-web
       registry: docker.carrotwu.com
