@@ -29,13 +29,12 @@ steps:
     image: plugins/docker
     settings:
       debug: true
-      insecure: true
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
-      repo: docker.carrotwu.com/blog-web
-      registry: docker.carrotwu.com
-      username: admin
+      repo: registry.cn-shenzhen.aliyuncs.com/carrot-wu/blog-web
+      registry: registry.cn-shenzhen.aliyuncs.com
+      username: 一米八的萝卜
         # from_secret: dockerUserName
-      password: Wu82389217
+      password: wu82389217
         #from_secret: dockerPassword
 
   - name: rebuild-cache
