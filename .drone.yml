@@ -16,14 +16,14 @@ steps:
       - name: cache
         path: /cache
 
-  - name: install
+  #- name: install
     #name: 安装依赖
-    image: node:alpine # 使用了本地Registry的nodejs，加快拉取速度
-    environment:
-      SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
-    commands:
-      - yarn config set cache-folder ./.yarn-cache --global
-      - yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
+    #image: node:alpine # 使用了本地Registry的nodejs，加快拉取速度
+    #environment:
+      #SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
+    #commands:
+      #- yarn config set cache-folder ./.yarn-cache --global
+      #- yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
 
   - name: build
     #name: 打包构建生成镜像
@@ -31,7 +31,7 @@ steps:
     settings:
       debug: true
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
-      repo: docker.carrotwu.com/blog-web
+      repo: docker.carrotwu.com/blog/blog-web
       registry: https://docker.carrotwu.com
       username:
         from_secret: dockerUserName
@@ -68,7 +68,7 @@ steps:
       script:
         - sudo docker stop blog-web;
         - sudo docker rm blog-web;
-        - sudo docker image rm docker.carrotwu.com/blog-web;
+        - sudo docker image rm docker.carrotwu.com/blog/blog-web;
         - sudo cd docker-direction;
         - sudo docker-compose up -d;
 # 声明并挂载缓存文件夹，宿主机的路径为 /tmp/cache
