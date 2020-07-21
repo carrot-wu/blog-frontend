@@ -3,17 +3,17 @@ type: docker
 name: blogFrontend
 
 steps:
-#  - name: restore-cache
-#    #name: 取出缓存 # 把之前缓存好的数据取出
-#    image: drillster/drone-volume-cache
-#    settings:
-#      restore: true
-#      mount: # 缓存挂载的文件夹
-#        - ./.yarn-cache
-#        - ./node_modules
-#    volumes:
-#      - name: cache
-#        path: /cache
+  - name: restore-cache
+    #name: 取出缓存 # 把之前缓存好的数据取出
+    image: drillster/drone-volume-cache
+    settings:
+      restore: true
+      mount: # 缓存挂载的文件夹
+        - ./.yarn-cache
+        - ./node_modules
+    volumes:
+      - name: cache
+        path: /cache
 
 #  - name: install
 #    #name: 安装依赖
@@ -30,12 +30,12 @@ steps:
     settings:
       debug: true
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
-      repo: registry.cn-shenzhen.aliyuncs.com/carrot-wu/blog-web
-      registry: registry.cn-shenzhen.aliyuncs.com
-      username: 一米八的萝卜
-        # from_secret: dockerUserName
-      password: wu82389217
-        #from_secret: dockerPassword
+      repo: docker.carrotwu.com/blog-web/blogFrontend
+      registry: docker.carrotwu.com
+      username:
+        from_secret: dockerUserName
+      password:
+        from_secret: dockerPassword
 
   - name: rebuild-cache
     #name: 保存缓存 # 把依赖和 npm 缓存放到缓存里
