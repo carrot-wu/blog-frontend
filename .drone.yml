@@ -80,3 +80,4 @@ volumes:
 trigger:
   branch:
   - master
+  -
