@@ -16,14 +16,14 @@ steps:
       - name: cache
         path: /cache
 
-  #- name: install
+  - name: install安装依赖
     #name: 安装依赖
-    #image: node:alpine # 使用了本地Registry的nodejs，加快拉取速度
-    #environment:
-      #SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
-    #commands:
-      #- yarn config set cache-folder ./.yarn-cache --global
-      #- yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
+    image: node:alpine # 使用了本地Registry的nodejs，加快拉取速度
+    environment:
+      SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
+    commands:
+      - yarn config set cache-folder ./.yarn-cache --global
+      - yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
 
   - name: build
     #name: 打包构建生成镜像
@@ -79,4 +79,4 @@ volumes:
 
 trigger:
   branch:
-  - dev
+  - master
