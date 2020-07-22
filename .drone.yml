@@ -70,7 +70,7 @@ steps:
         - sudo docker rm blog-web;
         - sudo docker image rm docker.carrotwu.com/blog/blog-web;
         - sudo cd docker-direction;
-        - sudo docker-compose up -d;
+        - docker-compose up -d;
 # 声明并挂载缓存文件夹，宿主机的路径为 /tmp/cache
 volumes:
   - name: cache
@@ -80,4 +80,3 @@ volumes:
 trigger:
   branch:
   - master
-  -
