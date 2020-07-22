@@ -10,7 +10,7 @@ steps:
     settings:
       restore: true
       mount: # 缓存挂载的文件夹
-        - ./.yarn-cache
+        - ./yarn-cache
         - ./node_modules
     volumes:
       - name: cache
@@ -22,7 +22,7 @@ steps:
     environment:
       SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
     commands:
-      - yarn config set cache-folder ./.yarn-cache --global
+      - yarn config set cache-folder ./yarn-cache
       - yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
 
   - name: build
@@ -44,7 +44,7 @@ steps:
     settings:
       rebuild: true
       mount:
-        - ./.yarn-cache
+        - ./yarn-cache
         - ./node_modules
     volumes:
       - name: cache
