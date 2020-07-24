@@ -7,7 +7,7 @@ import {useHistory, useParams} from 'react-router'
 import {usePromise, useTitle} from '@hooks/index'
 import {getArticleById} from '@services/article'
 import './styles.less'
-import 'generatoc/src/style/main.css';
+import './generatoc.css';
 
 const gecContent = '.content'
 const gecHeading = ['h2', 'h3', 'h4', 'h5']
