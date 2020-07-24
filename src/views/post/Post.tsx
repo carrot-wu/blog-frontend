@@ -1,4 +1,5 @@
 import React, {useEffect, useMemo} from "react"
+import generatoc from '@utils/generatoc'
 import marked from 'marked'
 import useFormatDate from "@hooks/useFormatDate";
 import {Loading} from "@components/index";
@@ -6,6 +7,11 @@ import {useHistory, useParams} from 'react-router'
 import {usePromise, useTitle} from '@hooks/index'
 import {getArticleById} from '@services/article'
 import './styles.less'
+import 'generatoc/src/style/main.css';
+
+const gecContent = '.content'
+const gecHeading = ['h2', 'h3', 'h4', 'h5']
+const gecSelector = '#toc'
 
 const Prism = window && window.Prism
 marked.setOptions({
@@ -34,6 +40,10 @@ const Post:React.FC = () => {
     // eslint-disable-next-line
   }, [id])
 
+  useEffect(() => {
+    generatoc.destroy()
+    generatoc.init({ content: gecContent, heading: gecHeading, selector: gecSelector, scrollElement: '.content' })
+  })
   const html = useMemo(() => marked(content),[content])
   return (
     <div className="content">
@@ -49,6 +59,7 @@ const Post:React.FC = () => {
             <div className="time">{time}</div>
           </div>
           <div className="markdown-body" dangerouslySetInnerHTML={{__html:html}}/>
+          <div id="toc"/>
         </div>
       }
 
