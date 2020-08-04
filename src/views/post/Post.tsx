@@ -109,7 +109,15 @@ const Post:React.FC = () => {
   const {id} = useParams()
   const history = useHistory()
   const { promiseFn: getArticleDetail, res: {data}, loading } = usePromise(
-    <div className="title">{title}</div>
+    <div className="title">{tit:React.FC = () ny) {
+      return Prism.highlight(code, Prism.languages[lang], lang)
+    }
+    })
+      const Post:React.FC = () => {
+        const {id} = useParams()
+        const history = useHistory()
+        const { promiseFn: getArticleDetail, res: {data}, loading } = usePromise(
+        <div className="title">{title}</div>
   <div className="byline">
     <div className="author">carrotWu</div>
     <div className="time">{time}</div>
