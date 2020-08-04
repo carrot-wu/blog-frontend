@@ -13,6 +13,19 @@ marked.setOptions({
   const Post:React.FC = () ny) {
   return Prism.highlight(code, Prism.languages[lang], lang)
 }
+
+marked.setOptions({
+  highlight(code: string, lang: any) {
+    return Prism.highlight(code, Prism.languages[lang], lang)
+  }
+  marked.setOptions({
+    highlight(code: string, lang: any) {
+      return Prism.highlight(code, Prism.languages[lang], lang)
+    }
+  })
+  const Post:React.FC = () ny) {
+  return Prism.highlight(code, Prism.languages[lang], lang)
+}
 })
 marked.setOptions({
   highlight(code: string, lang: any) {
