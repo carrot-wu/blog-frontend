@@ -18,7 +18,8 @@ steps:
 
   - name: install安装依赖
     #name: 安装依赖
-    image: http://172.21.0.9/library/node:alpine # 使用了本地Registry的nodejs，加快拉取速度
+    image: docker.carrotwu.com/library/node:alpine # 使用了本地Registry的nodejs，加快拉取速度
+    #image: http://172.21.0.9/library/node:alpine # 使用了本地Registry的nodejs，加快拉取速度
     environment:
       SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
     commands:
