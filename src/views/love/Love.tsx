@@ -1,15 +1,15 @@
-import React from "react"
-import './styles.less'
-import {Header} from "components";
+import React from 'react';
+import './styles.less';
+import { Header } from 'components';
 
 const Love: React.FC = () => {
   return (
     <div className="love-wrapper">
-      <Header/>
+      <Header />
       <div className="love-content">
         <span>完善中</span>
       </div>
     </div>
-  )
-}
-export default Love
+  );
+};
+export default Love;

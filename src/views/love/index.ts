@@ -1,2 +1,2 @@
-import Love from './Love'
-export default Love
+import Love from './Love';
+export default Love;

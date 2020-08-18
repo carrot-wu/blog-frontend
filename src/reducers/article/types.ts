@@ -1,21 +1,21 @@
-import {ArticleListItem} from 'types/article'
+import { ArticleListItem } from 'types/article';
 export interface ArticleMap {
-  [index: number]: ArticleListItem
+  [index: number]: ArticleListItem;
 }
 
 export interface ArticleDefaultState {
   articleIdList: number[];
-  articleMap: ArticleMap
+  articleMap: ArticleMap;
 }
 // action type
-export const UPD_ARTICLE_LIST = 'UPD_ARTICLE_LIST'
+export const UPD_ARTICLE_LIST = 'UPD_ARTICLE_LIST';
 
 // action
 export interface UpdArticleAction {
-  type: typeof UPD_ARTICLE_LIST,
+  type: typeof UPD_ARTICLE_LIST;
   payload: {
-    articleList: ArticleListItem[]
-  }
+    articleList: ArticleListItem[];
+  };
 }
 
-export type UpdArticleActionType = UpdArticleAction
+export type UpdArticleActionType = UpdArticleAction;

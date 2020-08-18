@@ -1,6 +1,6 @@
 /* TOC */
 body {
-  --toc-color: #1b81b8
+  --toc-color: #1b81b8;
 }
 
 #toc {
@@ -14,7 +14,7 @@ body {
 #toc a {
   display: block;
   color: #cccccc;
-  transition: color .6s ease-in-out;
+  transition: color 0.6s ease-in-out;
 }
 
 #toc a:hover {
@@ -28,7 +28,7 @@ body {
 
 #toc ul {
   margin-left: 1em;
-  transition: all .6s ease-in-out;
+  transition: all 0.6s ease-in-out;
   transform-origin: 50% 0;
 }
 

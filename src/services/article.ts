@@ -1,5 +1,5 @@
-import request from '@utils/request'
-import { GetArticleListRes, GetArticleDetailRes } from '@type/article'
+import request from '@utils/request';
+import { GetArticleListRes, GetArticleDetailRes } from '@type/article';
 
 export interface GetArticleListParams {
   pageNum: number;
@@ -7,16 +7,16 @@ export interface GetArticleListParams {
   tag?: string;
 }
 export interface GetArticleDetailParams {
-  id: string
+  id: string;
 }
 export function getArticleList(params: GetArticleListParams) {
   return request.get<GetArticleListRes>('article/getArticleList', {
-    ...params
-  })
+    ...params,
+  });
 }
 
 export function getArticleById(params: GetArticleDetailParams) {
   return request.get<GetArticleDetailRes>('article/findArticleById', {
-    ...params
-  })
+    ...params,
+  });
 }

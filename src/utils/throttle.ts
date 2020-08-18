@@ -5,15 +5,14 @@
  * @returns {Function}
  */
 const throttle = function (fn: (...args: any[]) => any, delay?: number) {
-  let timer: number | null
+  let timer: number | null;
   return (...args: any[]) => {
-    if (timer) return false
+    if (timer) return false;
     timer = setTimeout(function () {
       // @ts-ignore
-      fn && fn.apply(this, args)
-    }, delay)
+      fn && fn.apply(this, args);
+    }, delay);
+  };
+};
 
-  }
-}
-
-export default throttle
+export default throttle;

@@ -2,31 +2,33 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosInstance,
-  AxiosError
-} from 'axios'
-import { IResponseConfig } from '@/type'
+  AxiosError,
+} from 'axios';
+import { IResponseConfig } from '@/type';
 
 interface IResErrorConfig {
-  status: number
-  message: string
-  errorCode: number
-  requestUrl: string
+  status: number;
+  message: string;
+  errorCode: number;
+  requestUrl: string;
 }
 
 interface IOptsInterceptors {
-  resHandler?: (res: AxiosResponse<IResponseConfig>) => AxiosResponse<IResponseConfig> | Promise<AxiosResponse<IResponseConfig>>
-  errHandler?: (error: AxiosError) => Promise<ResError>
+  resHandler?: (
+    res: AxiosResponse<IResponseConfig>,
+  ) => AxiosResponse<IResponseConfig> | Promise<AxiosResponse<IResponseConfig>>;
+  errHandler?: (error: AxiosError) => Promise<ResError>;
 }
 
 interface IRequestOpts {
-  defaults?: AxiosRequestConfig
-  interceptors?: IOptsInterceptors
+  defaults?: AxiosRequestConfig;
+  interceptors?: IOptsInterceptors;
 }
 
 interface ICodeMessage {
-  [index: number]: string
+  [index: number]: string;
 }
-const codeMessage:ICodeMessage = {
+const codeMessage: ICodeMessage = {
   200: '服务器成功返回请求的数据。',
   201: '新建或修改数据成功。',
   202: '一个请求已经进入后台排队（异步任务）。',
@@ -48,18 +50,18 @@ const codeMessage:ICodeMessage = {
  * 封装请求响应 Error
  */
 export class ResError extends Error {
-  public status: number
+  public status: number;
 
-  public errorCode: number
+  public errorCode: number;
 
-  public requestUrl: string
+  public requestUrl: string;
 
   public constructor(resErrorConfig: IResErrorConfig) {
-    const { status, message, errorCode, requestUrl } = resErrorConfig
-    super(message)
-    this.status = status
-    this.errorCode = errorCode
-    this.requestUrl = requestUrl
+    const { status, message, errorCode, requestUrl } = resErrorConfig;
+    super(message);
+    this.status = status;
+    this.errorCode = errorCode;
+    this.requestUrl = requestUrl;
   }
 }
 
@@ -68,7 +70,7 @@ export class ResError extends Error {
  * 支持 get, post, put, patch, delete
  */
 export default class Http {
-  public instance: AxiosInstance
+  public instance: AxiosInstance;
 
   /**
    * create a request instance
@@ -83,7 +85,10 @@ export default class Http {
       ...defaults,
       timeout: 50000,
     }));
-    instance.interceptors.request.use(cfg => cfg, err => Promise.reject(err))
+    instance.interceptors.request.use(
+      (cfg) => cfg,
+      (err) => Promise.reject(err),
+    );
 
     /**
      * 请求失败拦截器 检验是什么类型的错误 网络错误或者自定义错误
@@ -99,57 +104,63 @@ export default class Http {
         requestUrl: request.url,
       };
       if (response) {
-        const { data = {}, status } = response
-        const { resultMsg } = data
-        const errorText = resultMsg || codeMessage[status] || response.statusText;
+        const { data = {}, status } = response;
+        const { resultMsg } = data;
+        const errorText =
+          resultMsg || codeMessage[status] || response.statusText;
         errorParams = {
           status,
           message: errorText,
           errorCode: status,
           requestUrl: request.url,
-        }
+        };
       } else {
         errorParams = {
           status: 9999,
           message: '网络错误',
           errorCode: 9999,
           requestUrl: request.url,
-        }
+        };
       }
-      return Promise.reject(
-        new ResError(errorParams),
-      )
+      return Promise.reject(new ResError(errorParams));
     }
 
     instance.interceptors.response.use(
-      interceptors.resHandler || (res => res),
+      interceptors.resHandler || ((res) => res),
       interceptors.errHandler || resErrorFn,
-    )
+    );
   }
 
   head<T>(url: string) {
-    return this.instance.head<T>(url)
+    return this.instance.head<T>(url);
   }
 
-  async get<T>(url: string, params: object = {}, config: AxiosRequestConfig = {}) {
-    const res = await this.instance.get<IResponseConfig<T>>(url, { ...config, params })
-    return res.data
+  async get<T>(
+    url: string,
+    params: object = {},
+    config: AxiosRequestConfig = {},
+  ) {
+    const res = await this.instance.get<IResponseConfig<T>>(url, {
+      ...config,
+      params,
+    });
+    return res.data;
   }
 
   delete<T>(url: string) {
-    return this.instance.delete<T>(url)
+    return this.instance.delete<T>(url);
   }
 
   async post<T>(url: string, data?: object, config?: AxiosRequestConfig) {
-    const res = await this.instance.post<IResponseConfig<T>>(url, data, config)
-    return res.data
+    const res = await this.instance.post<IResponseConfig<T>>(url, data, config);
+    return res.data;
   }
 
   put<T>(url: string, data?: object, config?: AxiosRequestConfig) {
-    return this.instance.put<T>(url, data, config)
+    return this.instance.put<T>(url, data, config);
   }
 
   patch<T>(url: string, data?: object, config?: AxiosRequestConfig) {
-    return this.instance.patch<T>(url, data, config)
+    return this.instance.patch<T>(url, data, config);
   }
 }

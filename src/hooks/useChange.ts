@@ -1,11 +1,11 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react';
 
 export default function useChange<T>(initState: T | (() => T)) {
-  const [value, setValue] = useState<T>(initState)
+  const [value, setValue] = useState<T>(initState);
   // 原生change事件
-  const onChange = useCallback(e => {
-    setValue(e.target.value)
-  }, [])
+  const onChange = useCallback((e) => {
+    setValue(e.target.value);
+  }, []);
   return {
     value,
     setValue,
@@ -17,5 +17,5 @@ export default function useChange<T>(initState: T | (() => T)) {
       value,
       onChange: setValue,
     },
-  }
+  };
 }

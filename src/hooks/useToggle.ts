@@ -1,21 +1,21 @@
-import useMethods from "./useMethods"
+import useMethods from './useMethods';
 
 interface UseToggleMethods<T = boolean> {
-  toggle:(value:T) => T
-  setFalse:() => T
-  setTrue:() => T
+  toggle: (value: T) => T;
+  setFalse: () => T;
+  setTrue: () => T;
 }
-const methods:UseToggleMethods = {
+const methods: UseToggleMethods = {
   toggle(value) {
-    return !value
+    return !value;
   },
   setFalse() {
-    return false
+    return false;
   },
   setTrue() {
-    return true
+    return true;
   },
-}
+};
 
 /**
  *
@@ -23,7 +23,7 @@ const methods:UseToggleMethods = {
  * @returns {[number, ReturnMethods<UseNumberMethods<number>, number>]}
  */
 function useToggle(initState: boolean) {
-  return useMethods(initState, methods)
+  return useMethods(initState, methods);
 }
 
-export default useToggle
+export default useToggle;

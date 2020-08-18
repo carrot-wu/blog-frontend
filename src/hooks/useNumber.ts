@@ -1,25 +1,25 @@
-import useMethods from "./useMethods"
+import useMethods from './useMethods';
 
 interface UseNumberMethods<T = number> {
-  increment:(value:T) => T
-  decrement:(value:T) => T
-  add:(value:T, num: number) => T
-  dec:(value:T, num: number) => T
+  increment: (value: T) => T;
+  decrement: (value: T) => T;
+  add: (value: T, num: number) => T;
+  dec: (value: T, num: number) => T;
 }
-const methods:UseNumberMethods = {
+const methods: UseNumberMethods = {
   increment(value) {
     return value + 1;
   },
   decrement(value) {
     return value - 1;
   },
-  add(value, num: number){
-    return value + num
+  add(value, num: number) {
+    return value + num;
   },
-  dec(value, num: number){
-    return value - num
-  }
-}
+  dec(value, num: number) {
+    return value - num;
+  },
+};
 
 /**
  *
@@ -27,7 +27,7 @@ const methods:UseNumberMethods = {
  * @returns {[number, ReturnMethods<UseNumberMethods<number>, number>]}
  */
 function useNumber(initState: number) {
-  return useMethods(initState, methods)
+  return useMethods(initState, methods);
 }
 
-export default useNumber
+export default useNumber;

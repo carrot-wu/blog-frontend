@@ -13,13 +13,11 @@ type TypeChecker = {
   date: Date;
   error: Error;
 };
-const typeToString = Object.prototype.toString
-const checkType = <U extends keyof TypeChecker>(type: U) => (val: unknown): val is TypeChecker[U] => (
-  typeToString
-    .call(val)
-    .slice(8, -1)
-    .toLowerCase() === type.toLowerCase()
-)
+const typeToString = Object.prototype.toString;
+const checkType = <U extends keyof TypeChecker>(type: U) => (
+  val: unknown,
+): val is TypeChecker[U] =>
+  typeToString.call(val).slice(8, -1).toLowerCase() === type.toLowerCase();
 const isNumber = checkType('number');
 const isArray = checkType('array');
 const isBoolean = checkType('boolean');
@@ -32,8 +30,7 @@ const isSymbol = checkType('symbol');
 const isDate = checkType('date');
 const isError = checkType('error');
 
-
-const isFunction = (val: unknown): val is Function => typeof val === 'function'
+const isFunction = (val: unknown): val is Function => typeof val === 'function';
 export {
   isNumber,
   isArray,
@@ -46,5 +43,5 @@ export {
   isString,
   isSymbol,
   isDate,
-  isError
-}
+  isError,
+};
