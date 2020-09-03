@@ -14,7 +14,7 @@ const methods: UseToggleMethods = {
   },
   setTrue() {
     return true;
-  },
+  }
 };
 
 /**

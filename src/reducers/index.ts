@@ -3,7 +3,7 @@ import tagReducer from './tag';
 import { combineReducers } from 'redux';
 const rootReducers = combineReducers({
   article: articleReducer,
-  tag: tagReducer,
+  tag: tagReducer
 });
 export type AppState = ReturnType<typeof rootReducers>;
 export default rootReducers;

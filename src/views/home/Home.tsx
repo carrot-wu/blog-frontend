@@ -13,7 +13,7 @@ import {
   Button,
   Loading,
   BottomLine,
-  Article,
+  Article
 } from '@/components';
 import './style.less';
 
@@ -32,22 +32,22 @@ const Home: React.FC = () => {
       dispatch(
         (thunkUpdArticle({
           pageNum,
-          pageSize,
-        }) as unknown) as Promise<GetArticleListRes>,
+          pageSize
+        }) as unknown) as Promise<GetArticleListRes>
       ),
-    [dispatch],
+    [dispatch]
   );
   //封装分页详情
   const { load, hasMore, loading } = useInfinite(getArticleList, {
     pageSize: 5,
-    immediate: true,
+    immediate: true
   });
   // 跳转详情
   const goPost = useCallback(
     (id) => {
       return () => history.push(`/post/${id}`);
     },
-    [history],
+    [history]
   );
   return (
     <div className="home">

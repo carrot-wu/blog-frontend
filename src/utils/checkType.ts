@@ -15,7 +15,7 @@ type TypeChecker = {
 };
 const typeToString = Object.prototype.toString;
 const checkType = <U extends keyof TypeChecker>(type: U) => (
-  val: unknown,
+  val: unknown
 ): val is TypeChecker[U] =>
   typeToString.call(val).slice(8, -1).toLowerCase() === type.toLowerCase();
 const isNumber = checkType('number');
@@ -43,5 +43,5 @@ export {
   isString,
   isSymbol,
   isDate,
-  isError,
+  isError
 };

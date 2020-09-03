@@ -11,7 +11,7 @@ interface HeaderLink {
 const headerLinkItem: HeaderLink[] = [
   { to: '/home', key: 'home', name: '首页' },
   { to: '/tag', key: 'tag', name: '分类' },
-  { to: '/love', key: 'love', name: '关于她' },
+  { to: '/love', key: 'love', name: '关于她' }
 ];
 
 export default function Header() {

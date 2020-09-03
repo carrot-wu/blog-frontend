@@ -13,18 +13,18 @@ const Tag: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { tagList, tagMap } = useSelector<AppState, TagDefaultState>(
-    (state) => state.tag,
+    (state) => state.tag
   );
   const getTagList = useCallback(
     async () => dispatch((thunkUpdTag() as unknown) as Promise<TagItem[]>),
-    [dispatch],
+    [dispatch]
   );
   // 跳转详情
   const goPost = useCallback(
     (id) => {
       return () => history.push(`/post/${id}`);
     },
-    [history],
+    [history]
   );
 
   useEffect(() => {

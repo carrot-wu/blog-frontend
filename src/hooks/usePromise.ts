@@ -26,16 +26,16 @@ interface PromiseRes<T, R> {
 
 // 函数重载
 function usePromise<R, P extends any[]>(
-  promiseFn: PromiseFn<R, P>,
+  promiseFn: PromiseFn<R, P>
 ): PromiseRes<PromiseFn<R, P>, R>;
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
-  depListOrOptions: any[] | PromiseOptions,
+  depListOrOptions: any[] | PromiseOptions
 ): PromiseRes<PromiseFn<R, P>, R>;
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
   depList: any[],
-  options: PromiseOptions,
+  options: PromiseOptions
 ): PromiseRes<PromiseFn<R, P>, R>;
 /**
  * 用于封装请求的自定义hooks方法
@@ -47,7 +47,7 @@ function usePromise<R, P extends any[]>(
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
   depList?: any[] | PromiseOptions,
-  options?: PromiseOptions,
+  options?: PromiseOptions
 ): PromiseRes<PromiseFn<R, P>, R> {
   //重载
   let _options: PromiseOptions;
@@ -78,7 +78,7 @@ function usePromise<R, P extends any[]>(
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
     },
-    [..._depList],
+    [..._depList]
   );
 
   useEffect(() => {
@@ -92,7 +92,7 @@ function usePromise<R, P extends any[]>(
     promiseFn: returnPromise,
     res: data,
     loading,
-    error,
+    error
   };
 }
 

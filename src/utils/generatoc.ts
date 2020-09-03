@@ -47,7 +47,7 @@ function praseH(h: string): number {
 function elementOffset(ele: Element) {
   let result = {
     top: 0,
-    left: 0,
+    left: 0
   };
   if (!ele.getClientRects().length) {
     return result;
@@ -59,7 +59,7 @@ function elementOffset(ele: Element) {
   let document = ele.ownerDocument!.documentElement;
   return {
     top: result.top + window.pageYOffset - document.clientTop,
-    left: result.left + window.pageXOffset - document.clientLeft,
+    left: result.left + window.pageXOffset - document.clientLeft
   };
 }
 
@@ -97,13 +97,13 @@ function nestNode(
   times: number,
   node: Element,
   level: number,
-  index: number,
+  index: number
 ): List {
   const template: List = {
     index,
     level: null,
     ele: null,
-    children: [],
+    children: []
   };
   if (times <= 0) {
     template.level = level;
@@ -118,14 +118,14 @@ function nestNode(
 function getLastHeadingParentOf(
   level: number,
   headings: List[],
-  index: number,
+  index: number
 ): List {
   let tmp = last(headings);
   let parent = {
     index,
     level: null,
     ele: null,
-    children: headings,
+    children: headings
   };
   while (tmp.level !== level) {
     parent = tmp;
@@ -189,7 +189,7 @@ function throttle(fn: Function, interval: number = 500) {
 function scrollEaseOut(
   start: number,
   destination: number = 0,
-  rate: number = 2,
+  rate: number = 2
 ): void {
   if (start === destination || rate < 1) {
     return;
@@ -239,10 +239,10 @@ function handlePageChange() {
     headingNode.forEach((hNode: Element, index: number) => {
       const distance = Math.abs(
         elementOffset(
-          hNode.nextElementSibling ? hNode.nextElementSibling : hNode,
+          hNode.nextElementSibling ? hNode.nextElementSibling : hNode
         ).top -
           winScrollTop -
-          tocScrollOffset,
+          tocScrollOffset
       );
       if (closestAnchorDistance == null || distance < closestAnchorDistance) {
         closestAnchorDistance = distance;
@@ -253,7 +253,7 @@ function handlePageChange() {
     });
     anchorText = (headingNode[closestAnchorIdx] as HTMLElement).innerText;
     const tocA = document.querySelector(
-      'a[data-toc-index="' + closestAnchorIdx + '"]',
+      'a[data-toc-index="' + closestAnchorIdx + '"]'
     );
     if (!tocA) {
       return;
@@ -304,7 +304,7 @@ function traceParentAndShow(ele: HTMLElement) {
 }
 
 function showRealUlChildren(
-  element: HTMLElement | Element,
+  element: HTMLElement | Element
 ): HTMLCollection | undefined {
   if (!element || !element.children || element.children.length === 0) {
     return undefined;
@@ -364,7 +364,7 @@ function processNode(
   node: Element,
   preNode: Element | null,
   heading: List[],
-  index: number,
+  index: number
 ) {
   const curHeadLevel: number = praseH(node.localName);
   const preHeadLevel: number = preNode ? praseH(preNode.localName) : 0;
@@ -373,7 +373,7 @@ function processNode(
     index,
     level: curHeadLevel,
     ele: null,
-    children: [],
+    children: []
   };
   // If heading level same as previous, append it to previous parent node.
   // 如果层级相同, 找到前一 tag 的父节点 append 这节点
@@ -423,7 +423,7 @@ const generatoc: Generatoc = {
     scrollHistory = false,
     scrollOffset = 0,
     duration = 7,
-    scrollElement,
+    scrollElement
   }: Params) {
     tocSelector = selector;
     tocHeader = heading.join(',');
@@ -469,9 +469,9 @@ const generatoc: Generatoc = {
       heading: tocHeader.split(','),
       selector: tocSelector,
       scrollOffset: tocScrollOffset,
-      duration: tocDuration,
+      duration: tocDuration
     });
-  },
+  }
 };
 
 export default generatoc;

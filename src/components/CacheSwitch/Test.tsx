@@ -2,7 +2,7 @@ import React from 'react';
 import {
   matchPath,
   SwitchProps,
-  __RouterContext as RouterContext,
+  __RouterContext as RouterContext
 } from 'react-router';
 
 interface CacheSwitchProps extends SwitchProps {
@@ -31,7 +31,7 @@ class CacheSwitch extends React.Component<CacheSwitchProps> {
               const { path } = child.props;
               const match = matchPath(location.pathname, {
                 ...child.props,
-                path,
+                path
               });
               if (match && include.includes(path)) {
                 //如果匹配，则将对应path的computedMatch属性加入cache对象里
@@ -43,7 +43,7 @@ class CacheSwitch extends React.Component<CacheSwitchProps> {
               const cloneProps =
                 this.cache[path] &&
                 Object.assign(this.cache[path].computedMatch, {
-                  display: match ? 'block' : 'none',
+                  display: match ? 'block' : 'none'
                 });
 
               return (

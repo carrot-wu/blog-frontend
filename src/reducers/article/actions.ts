@@ -9,14 +9,14 @@ import { ThunkAction } from 'redux-thunk';
 export function updArticle(articleList: ArticleListItem[]): UpdArticleAction {
   return {
     type: UPD_ARTICLE_LIST,
-    payload: { articleList },
+    payload: { articleList }
   };
 }
 // action
 export const thunkUpdArticle = (
-  params: GetArticleListParams,
+  params: GetArticleListParams
 ): ThunkAction<void, AppState, null, Action<typeof UPD_ARTICLE_LIST>> => async (
-  dispatch,
+  dispatch
 ) => {
   const { data } = await getArticleList(params);
   dispatch(updArticle(data.list));

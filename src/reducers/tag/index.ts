@@ -2,17 +2,17 @@ import {
   UpdTagActionType,
   UPD_TAG_LIST,
   TagDefaultState,
-  TagMap,
+  TagMap
 } from './types';
 
 const defaultState: TagDefaultState = {
   tagList: [],
-  tagMap: {},
+  tagMap: {}
 };
 
 export default function articleReducer(
   state = defaultState,
-  action: UpdTagActionType,
+  action: UpdTagActionType
 ): TagDefaultState {
   switch (action.type) {
     case UPD_TAG_LIST:
@@ -23,7 +23,7 @@ export default function articleReducer(
       }, {} as TagMap);
       return {
         tagList: [...state.tagList, ...tagList.map((article) => article.name)],
-        tagMap: { ...state.tagMap, ...tagMap },
+        tagMap: { ...state.tagMap, ...tagMap }
       };
     default:
       return state;

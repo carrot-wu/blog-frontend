@@ -28,7 +28,7 @@ const CacheSwitch: React.FC<CacheSwitchProps> = (props) => {
       const cloneProps =
         cache.current[path] &&
         Object.assign(cache.current[path].computedMatch, {
-          display: match ? 'block' : 'none',
+          display: match ? 'block' : 'none'
         });
 
       return (

@@ -6,7 +6,7 @@ module.exports = function (app) {
       target: isLocal ? 'http://localhost:4000' : 'https://api.carrotwu.com',
       secure: false,
       changeOrigin: true,
-      pathRewrite: { '/api': '' },
-    }),
+      pathRewrite: { '/api': '' }
+    })
   );
 };

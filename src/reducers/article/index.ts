@@ -2,17 +2,17 @@ import {
   UpdArticleActionType,
   UPD_ARTICLE_LIST,
   ArticleDefaultState,
-  ArticleMap,
+  ArticleMap
 } from './types';
 
 const defaultState: ArticleDefaultState = {
   articleIdList: [],
-  articleMap: {},
+  articleMap: {}
 };
 
 export default function articleReducer(
   state = defaultState,
-  action: UpdArticleActionType,
+  action: UpdArticleActionType
 ): ArticleDefaultState {
   switch (action.type) {
     // 扁平化缓存文章数据
@@ -25,9 +25,9 @@ export default function articleReducer(
       return {
         articleIdList: [
           ...state.articleIdList,
-          ...articleList.map((article) => article.id),
+          ...articleList.map((article) => article.id)
         ],
-        articleMap: { ...state.articleMap, ...articleMap },
+        articleMap: { ...state.articleMap, ...articleMap }
       };
     default:
       return state;

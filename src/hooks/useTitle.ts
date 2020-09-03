@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 export default function useTitle(
   inTitle: string | void,
-  leftTitle?: string,
+  leftTitle?: string
 ): void {
   useEffect(() => {
     if (inTitle) {

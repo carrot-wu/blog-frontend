@@ -24,7 +24,7 @@ type ReturnMethods<U, T> = {
  */
 function useMethods<T, K extends FilterMethods<K, T>>(
   initState: T,
-  methods: K,
+  methods: K
 ): [T, ReturnMethods<K, T>] {
   const [value, setValue] = useState<T>(() => initState);
   const methodsTypes = Object.keys(methods) as Array<keyof K>;

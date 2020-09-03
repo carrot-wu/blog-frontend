@@ -18,7 +18,7 @@ const methods: UseNumberMethods = {
   },
   dec(value, num: number) {
     return value - num;
-  },
+  }
 };
 
 /**

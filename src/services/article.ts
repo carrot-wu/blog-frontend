@@ -11,12 +11,12 @@ export interface GetArticleDetailParams {
 }
 export function getArticleList(params: GetArticleListParams) {
   return request.get<GetArticleListRes>('article/getArticleList', {
-    ...params,
+    ...params
   });
 }
 
 export function getArticleById(params: GetArticleDetailParams) {
   return request.get<GetArticleDetailRes>('article/findArticleById', {
-    ...params,
+    ...params
   });
 }

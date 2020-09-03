@@ -11,5 +11,5 @@ export {
   usePromise,
   useTitle,
   useSetState,
-  useNumber,
+  useNumber
 };

@@ -25,7 +25,7 @@ function useArray<T>(initState: T[]) {
     },
     plainShift(value) {
       return value.slice(1);
-    },
+    }
   };
 
   return useMethods(initState, methods);

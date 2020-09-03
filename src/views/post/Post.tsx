@@ -17,7 +17,7 @@ const Prism = window && window.Prism;
 marked.setOptions({
   highlight(code: string, lang: any) {
     return Prism.highlight(code, Prism.languages[lang], lang);
-  },
+  }
 });
 const Post: React.FC = () => {
   const { id } = useParams();
@@ -25,7 +25,7 @@ const Post: React.FC = () => {
   const {
     promiseFn: getArticleDetail,
     res: { data },
-    loading,
+    loading
   } = usePromise(async (id: string) => getArticleById({ id }), [id]);
   const { title, content = '', createdStamp } = data;
   const time = useFormatDate(createdStamp);
@@ -47,7 +47,7 @@ const Post: React.FC = () => {
       content: gecContent,
       heading: gecHeading,
       selector: gecSelector,
-      scrollElement: '.content',
+      scrollElement: '.content'
     });
   });
   const html = useMemo(() => marked(content), [content]);

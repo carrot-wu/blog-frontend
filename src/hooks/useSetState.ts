@@ -9,7 +9,7 @@ type ReturnStateMethods<U> = Partial<U> | ((state: U) => Partial<U>);
 
 type ReturnSetStateFn<T> = (
   state: ReturnStateMethods<T>,
-  cb?: (...args: any[]) => void,
+  cb?: (...args: any[]) => void
 ) => void;
 /**
  * 模拟class组件的setState方法
@@ -17,7 +17,7 @@ type ReturnSetStateFn<T> = (
  * @returns {[T, ((state: ReturnStateMethods<T>) => void)]}
  */
 export default function useSetState<T extends object>(
-  initObj: ISetState<T>,
+  initObj: ISetState<T>
 ): [T, ReturnSetStateFn<T>] {
   const [state, setState] = useState<T>(initObj);
   // 通过useRef缓存cb方法用于下面的useEffect进行渲染

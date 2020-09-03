@@ -2,7 +2,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
   AxiosInstance,
-  AxiosError,
+  AxiosError
 } from 'axios';
 import { IResponseConfig } from '@/type';
 
@@ -15,7 +15,7 @@ interface IResErrorConfig {
 
 interface IOptsInterceptors {
   resHandler?: (
-    res: AxiosResponse<IResponseConfig>,
+    res: AxiosResponse<IResponseConfig>
   ) => AxiosResponse<IResponseConfig> | Promise<AxiosResponse<IResponseConfig>>;
   errHandler?: (error: AxiosError) => Promise<ResError>;
 }
@@ -43,7 +43,7 @@ const codeMessage: ICodeMessage = {
   500: '服务器发生错误，请检查服务器。',
   502: '网关错误。',
   503: '服务不可用，服务器暂时过载或维护。',
-  504: '网关超时。',
+  504: '网关超时。'
 };
 
 /**
@@ -83,11 +83,11 @@ export default class Http {
     // eslint-disable-next-line no-multi-assign
     const instance = (this.instance = axios.create({
       ...defaults,
-      timeout: 50000,
+      timeout: 50000
     }));
     instance.interceptors.request.use(
       (cfg) => cfg,
-      (err) => Promise.reject(err),
+      (err) => Promise.reject(err)
     );
 
     /**
@@ -101,7 +101,7 @@ export default class Http {
         status: 1000,
         message: '网络错误',
         errorCode: 1000,
-        requestUrl: request.url,
+        requestUrl: request.url
       };
       if (response) {
         const { data = {}, status } = response;
@@ -112,14 +112,14 @@ export default class Http {
           status,
           message: errorText,
           errorCode: status,
-          requestUrl: request.url,
+          requestUrl: request.url
         };
       } else {
         errorParams = {
           status: 9999,
           message: '网络错误',
           errorCode: 9999,
-          requestUrl: request.url,
+          requestUrl: request.url
         };
       }
       return Promise.reject(new ResError(errorParams));
@@ -127,7 +127,7 @@ export default class Http {
 
     instance.interceptors.response.use(
       interceptors.resHandler || ((res) => res),
-      interceptors.errHandler || resErrorFn,
+      interceptors.errHandler || resErrorFn
     );
   }
 
@@ -138,11 +138,11 @@ export default class Http {
   async get<T>(
     url: string,
     params: object = {},
-    config: AxiosRequestConfig = {},
+    config: AxiosRequestConfig = {}
   ) {
     const res = await this.instance.get<IResponseConfig<T>>(url, {
       ...config,
-      params,
+      params
     });
     return res.data;
   }

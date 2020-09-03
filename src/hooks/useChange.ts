@@ -11,11 +11,11 @@ export default function useChange<T>(initState: T | (() => T)) {
     setValue,
     bindEvent: {
       value,
-      onChange,
+      onChange
     },
     bind: {
       value,
-      onChange: setValue,
-    },
+      onChange: setValue
+    }
   };
 }

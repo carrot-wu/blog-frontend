@@ -42,7 +42,7 @@ interface InfiniteRes<T> {
 }
 export default function useInfinite<T>(
   loadFn: LoadFnInterface<T>,
-  options: OptionsInterface = {},
+  options: OptionsInterface = {}
 ): InfiniteRes<T> {
   const { pageSize = 10, defaultPage = 1, immediate = false } = options;
   // loadFn 是一个异步函数 最终返回的res 包含 {data, pageNo, totalPage}
@@ -91,6 +91,6 @@ export default function useInfinite<T>(
     hasMore,
     list: dataList,
     error,
-    clear,
+    clear
   };
 }

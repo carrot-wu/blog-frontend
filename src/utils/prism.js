@@ -75,7 +75,7 @@ var _self =
             }
             return null;
           }
-        },
+        }
       },
       languages: {
         extend: function (e, r) {
@@ -112,7 +112,7 @@ var _self =
                 ? 'Array' !== s || a[i(l)] || ((a[i(l)] = !0), e(l, n, o, a))
                 : ((a[i(l)] = !0), e(l, n, null, a));
             }
-        },
+        }
       },
       plugins: {},
       highlightAll: function (e, r) {
@@ -122,7 +122,7 @@ var _self =
         var t = {
           callback: n,
           selector:
-            'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+            'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
         };
         _.hooks.run('before-highlightall', t);
         for (var a, i = e.querySelectorAll(t.selector), o = 0; (a = i[o++]); )
@@ -164,8 +164,8 @@ var _self =
                 JSON.stringify({
                   language: o.language,
                   code: o.code,
-                  immediateClose: !0,
-                }),
+                  immediateClose: !0
+                })
               );
           } else l(_.highlight(o.code, o.grammar, o.language));
         else l(_.util.encode(o.code));
@@ -260,9 +260,9 @@ var _self =
         run: function (e, r) {
           var n = _.hooks.all[e];
           if (n && n.length) for (var t, a = 0; (t = n[a++]); ) t(r);
-        },
+        }
       },
-      Token: L,
+      Token: L
     };
     function L(e, r, n, t, a) {
       (this.type = e),
@@ -287,7 +287,7 @@ var _self =
           tag: 'span',
           classes: ['token', e.type],
           attributes: {},
-          language: r,
+          language: r
         };
         if (e.alias) {
           var t = Array.isArray(e.alias) ? e.alias : [e.alias];
@@ -330,7 +330,7 @@ var _self =
                 u.postMessage(_.highlight(t, _.languages[n], n)),
                   a && u.close();
               },
-              !1,
+              !1
             )),
         _
       );
@@ -360,7 +360,7 @@ var _self =
   prolog: /<\?[\s\S]+?\?>/,
   doctype: {
     pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:(?!<!--)[^"'\]]|"[^"]*"|'[^']*'|<!--[\s\S]*?-->)*\]\s*)?>/i,
-    greedy: !0,
+    greedy: !0
   },
   cdata: /<!\[CDATA\[[\s\S]*?]]>/i,
   tag: {
@@ -369,22 +369,22 @@ var _self =
     inside: {
       tag: {
         pattern: /^<\/?[^\s>\/]+/i,
-        inside: { punctuation: /^<\/?/, namespace: /^[^\s>\/:]+:/ },
+        inside: { punctuation: /^<\/?/, namespace: /^[^\s>\/:]+:/ }
       },
       'attr-value': {
         pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/i,
         inside: {
-          punctuation: [/^=/, { pattern: /^(\s*)["']|["']$/, lookbehind: !0 }],
-        },
+          punctuation: [/^=/, { pattern: /^(\s*)["']|["']$/, lookbehind: !0 }]
+        }
       },
       punctuation: /\/?>/,
       'attr-name': {
         pattern: /[^\s>\/]+/,
-        inside: { namespace: /^[^\s>\/:]+:/ },
-      },
-    },
+        inside: { namespace: /^[^\s>\/:]+:/ }
+      }
+    }
   },
-  entity: /&#?[\da-z]{1,8};/i,
+  entity: /&#?[\da-z]{1,8};/i
 }),
   (Prism.languages.markup.tag.inside['attr-value'].inside.entity =
     Prism.languages.markup.entity),
@@ -398,11 +398,11 @@ var _self =
       (s['language-' + e] = {
         pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
         lookbehind: !0,
-        inside: Prism.languages[e],
+        inside: Prism.languages[e]
       }),
         (s.cdata = /^<!\[CDATA\[|\]\]>$/i);
       var n = {
-        'included-cdata': { pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i, inside: s },
+        'included-cdata': { pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i, inside: s }
       };
       n['language-' + e] = { pattern: /[\s\S]+/, inside: Prism.languages[e] };
       var t = {};
@@ -410,16 +410,16 @@ var _self =
         pattern: RegExp(
           '(<__[\\s\\S]*?>)(?:<!\\[CDATA\\[[\\s\\S]*?\\]\\]>\\s*|[\\s\\S])*?(?=<\\/__>)'.replace(
             /__/g,
-            a,
+            a
           ),
-          'i',
+          'i'
         ),
         lookbehind: !0,
         greedy: !0,
-        inside: n,
+        inside: n
       }),
         Prism.languages.insertBefore('markup', 'cdata', t);
-    },
+    }
   }),
   (Prism.languages.xml = Prism.languages.extend('markup', {})),
   (Prism.languages.html = Prism.languages.markup),
@@ -431,18 +431,18 @@ var _self =
     comment: /\/\*[\s\S]*?\*\//,
     atrule: {
       pattern: /@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,
-      inside: { rule: /@[\w-]+/ },
+      inside: { rule: /@[\w-]+/ }
     },
     url: {
       pattern: RegExp('url\\((?:' + t.source + '|[^\n\r()]*)\\)', 'i'),
-      inside: { function: /^url/i, punctuation: /^\(|\)$/ },
+      inside: { function: /^url/i, punctuation: /^\(|\)$/ }
     },
     selector: RegExp('[^{}\\s](?:[^{};"\']|' + t.source + ')*?(?=\\s*\\{)'),
     string: { pattern: t, greedy: !0 },
     property: /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
     important: /!important\b/i,
     function: /[-a-z0-9]+(?=\()/i,
-    punctuation: /[(){};:,]/,
+    punctuation: /[(){};:,]/
   }),
     (s.languages.css.atrule.inside.rest = s.languages.css);
   var e = s.languages.markup;
@@ -457,53 +457,53 @@ var _self =
           inside: {
             'attr-name': { pattern: /^\s*style/i, inside: e.tag.inside },
             punctuation: /^\s*=\s*['"]|['"]\s*$/,
-            'attr-value': { pattern: /.+/i, inside: s.languages.css },
+            'attr-value': { pattern: /.+/i, inside: s.languages.css }
           },
-          alias: 'language-css',
-        },
+          alias: 'language-css'
+        }
       },
-      e.tag,
+      e.tag
     ));
 })(Prism);
 Prism.languages.clike = {
   comment: [
     { pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/, lookbehind: !0 },
-    { pattern: /(^|[^\\:])\/\/.*/, lookbehind: !0, greedy: !0 },
+    { pattern: /(^|[^\\:])\/\/.*/, lookbehind: !0, greedy: !0 }
   ],
   string: {
     pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-    greedy: !0,
+    greedy: !0
   },
   'class-name': {
     pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,
     lookbehind: !0,
-    inside: { punctuation: /[.\\]/ },
+    inside: { punctuation: /[.\\]/ }
   },
   keyword: /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
   boolean: /\b(?:true|false)\b/,
   function: /\w+(?=\()/,
   number: /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
   operator: /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
-  punctuation: /[{}[\];(),.:]/,
+  punctuation: /[{}[\];(),.:]/
 };
 (Prism.languages.javascript = Prism.languages.extend('clike', {
   'class-name': [
     Prism.languages.clike['class-name'],
     {
       pattern: /(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,
-      lookbehind: !0,
-    },
+      lookbehind: !0
+    }
   ],
   keyword: [
     { pattern: /((?:^|})\s*)(?:catch|finally)\b/, lookbehind: !0 },
     {
       pattern: /(^|[^.])\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
-      lookbehind: !0,
-    },
+      lookbehind: !0
+    }
   ],
   number: /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
   function: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
-  operator: /--|\+\+|\*\*=?|=>|&&|\|\||[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?[.?]?|[~:]/,
+  operator: /--|\+\+|\*\*=?|=>|&&|\|\||[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?[.?]?|[~:]/
 })),
   (Prism.languages.javascript[
     'class-name'
@@ -512,34 +512,34 @@ Prism.languages.clike = {
     regex: {
       pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=\s*(?:$|[\r\n,.;})\]]))/,
       lookbehind: !0,
-      greedy: !0,
+      greedy: !0
     },
     'function-variable': {
       pattern: /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,
-      alias: 'function',
+      alias: 'function'
     },
     parameter: [
       {
         pattern: /(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,
         lookbehind: !0,
-        inside: Prism.languages.javascript,
+        inside: Prism.languages.javascript
       },
       {
         pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,
-        inside: Prism.languages.javascript,
+        inside: Prism.languages.javascript
       },
       {
         pattern: /(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,
         lookbehind: !0,
-        inside: Prism.languages.javascript,
+        inside: Prism.languages.javascript
       },
       {
         pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,
         lookbehind: !0,
-        inside: Prism.languages.javascript,
-      },
+        inside: Prism.languages.javascript
+      }
     ],
-    constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
+    constant: /\b[A-Z](?:[A-Z_]|\dx?)*\b/
   }),
   Prism.languages.insertBefore('javascript', 'string', {
     'template-string': {
@@ -553,14 +553,14 @@ Prism.languages.clike = {
           inside: {
             'interpolation-punctuation': {
               pattern: /^\${|}$/,
-              alias: 'punctuation',
+              alias: 'punctuation'
             },
-            rest: Prism.languages.javascript,
-          },
+            rest: Prism.languages.javascript
+          }
         },
-        string: /[\s\S]+/,
-      },
-    },
+        string: /[\s\S]+/
+      }
+    }
   }),
   Prism.languages.markup &&
     Prism.languages.markup.tag.addInlined('script', 'javascript'),
@@ -568,52 +568,52 @@ Prism.languages.clike = {
 (Prism.languages.docker = {
   keyword: {
     pattern: /(^\s*)(?:ADD|ARG|CMD|COPY|ENTRYPOINT|ENV|EXPOSE|FROM|HEALTHCHECK|LABEL|MAINTAINER|ONBUILD|RUN|SHELL|STOPSIGNAL|USER|VOLUME|WORKDIR)(?=\s)/im,
-    lookbehind: !0,
+    lookbehind: !0
   },
   string: /("|')(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
   comment: /#.*/,
-  punctuation: /---|\.\.\.|[:[\]{}\-,|>?]/,
+  punctuation: /---|\.\.\.|[:[\]{}\-,|>?]/
 }),
   (Prism.languages.dockerfile = Prism.languages.docker);
 (Prism.languages.less = Prism.languages.extend('css', {
   comment: [/\/\*[\s\S]*?\*\//, { pattern: /(^|[^\\])\/\/.*/, lookbehind: !0 }],
   atrule: {
     pattern: /@[\w-]+?(?:\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};])*?(?=\s*\{)/,
-    inside: { punctuation: /[:()]/ },
+    inside: { punctuation: /[:()]/ }
   },
   selector: {
     pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\((?:[^(){}]|\([^(){}]*\))*\)|[^(){};@])*?(?=\s*\{)/,
-    inside: { variable: /@+[\w-]+/ },
+    inside: { variable: /@+[\w-]+/ }
   },
   property: /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/i,
-  operator: /[+\-*\/]/,
+  operator: /[+\-*\/]/
 })),
   Prism.languages.insertBefore('less', 'property', {
     variable: [
       { pattern: /@[\w-]+\s*:/, inside: { punctuation: /:/ } },
-      /@@?[\w-]+/,
+      /@@?[\w-]+/
     ],
     'mixin-usage': {
       pattern: /([{;]\s*)[.#](?!\d)[\w-]+.*?(?=[(;])/,
       lookbehind: !0,
-      alias: 'function',
-    },
+      alias: 'function'
+    }
   });
 (Prism.languages.typescript = Prism.languages.extend('javascript', {
   keyword: /\b(?:abstract|as|async|await|break|case|catch|class|const|constructor|continue|debugger|declare|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|is|keyof|let|module|namespace|new|null|of|package|private|protected|public|readonly|return|require|set|static|super|switch|this|throw|try|type|typeof|undefined|var|void|while|with|yield)\b/,
-  builtin: /\b(?:string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/,
+  builtin: /\b(?:string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/
 })),
   (Prism.languages.ts = Prism.languages.typescript);
 (Prism.languages.nginx = Prism.languages.extend('clike', {
   comment: { pattern: /(^|[^"{\\])#.*/, lookbehind: !0 },
-  keyword: /\b(?:CONTENT_|DOCUMENT_|GATEWAY_|HTTP_|HTTPS|if_not_empty|PATH_|QUERY_|REDIRECT_|REMOTE_|REQUEST_|SCGI|SCRIPT_|SERVER_|http|events|accept_mutex|accept_mutex_delay|access_log|add_after_body|add_before_body|add_header|addition_types|aio|alias|allow|ancient_browser|ancient_browser_value|auth|auth_basic|auth_basic_user_file|auth_http|auth_http_header|auth_http_timeout|autoindex|autoindex_exact_size|autoindex_localtime|break|charset|charset_map|charset_types|chunked_transfer_encoding|client_body_buffer_size|client_body_in_file_only|client_body_in_single_buffer|client_body_temp_path|client_body_timeout|client_header_buffer_size|client_header_timeout|client_max_body_size|connection_pool_size|create_full_put_path|daemon|dav_access|dav_methods|debug_connection|debug_points|default_type|deny|devpoll_changes|devpoll_events|directio|directio_alignment|disable_symlinks|empty_gif|env|epoll_events|error_log|error_page|expires|fastcgi_buffer_size|fastcgi_buffers|fastcgi_busy_buffers_size|fastcgi_cache|fastcgi_cache_bypass|fastcgi_cache_key|fastcgi_cache_lock|fastcgi_cache_lock_timeout|fastcgi_cache_methods|fastcgi_cache_min_uses|fastcgi_cache_path|fastcgi_cache_purge|fastcgi_cache_use_stale|fastcgi_cache_valid|fastcgi_connect_timeout|fastcgi_hide_header|fastcgi_ignore_client_abort|fastcgi_ignore_headers|fastcgi_index|fastcgi_intercept_errors|fastcgi_keep_conn|fastcgi_max_temp_file_size|fastcgi_next_upstream|fastcgi_no_cache|fastcgi_param|fastcgi_pass|fastcgi_pass_header|fastcgi_read_timeout|fastcgi_redirect_errors|fastcgi_send_timeout|fastcgi_split_path_info|fastcgi_store|fastcgi_store_access|fastcgi_temp_file_write_size|fastcgi_temp_path|flv|geo|geoip_city|geoip_country|google_perftools_profiles|gzip|gzip_buffers|gzip_comp_level|gzip_disable|gzip_http_version|gzip_min_length|gzip_proxied|gzip_static|gzip_types|gzip_vary|if|if_modified_since|ignore_invalid_headers|image_filter|image_filter_buffer|image_filter_jpeg_quality|image_filter_sharpen|image_filter_transparency|imap_capabilities|imap_client_buffer|include|index|internal|ip_hash|keepalive|keepalive_disable|keepalive_requests|keepalive_timeout|kqueue_changes|kqueue_events|large_client_header_buffers|limit_conn|limit_conn_log_level|limit_conn_zone|limit_except|limit_rate|limit_rate_after|limit_req|limit_req_log_level|limit_req_zone|limit_zone|lingering_close|lingering_time|lingering_timeout|listen|location|lock_file|log_format|log_format_combined|log_not_found|log_subrequest|map|map_hash_bucket_size|map_hash_max_size|master_process|max_ranges|memcached_buffer_size|memcached_connect_timeout|memcached_next_upstream|memcached_pass|memcached_read_timeout|memcached_send_timeout|merge_slashes|min_delete_depth|modern_browser|modern_browser_value|mp4|mp4_buffer_size|mp4_max_buffer_size|msie_padding|msie_refresh|multi_accept|open_file_cache|open_file_cache_errors|open_file_cache_min_uses|open_file_cache_valid|open_log_file_cache|optimize_server_names|override_charset|pcre_jit|perl|perl_modules|perl_require|perl_set|pid|pop3_auth|pop3_capabilities|port_in_redirect|post_action|postpone_output|protocol|proxy|proxy_buffer|proxy_buffer_size|proxy_buffering|proxy_buffers|proxy_busy_buffers_size|proxy_cache|proxy_cache_bypass|proxy_cache_key|proxy_cache_lock|proxy_cache_lock_timeout|proxy_cache_methods|proxy_cache_min_uses|proxy_cache_path|proxy_cache_use_stale|proxy_cache_valid|proxy_connect_timeout|proxy_cookie_domain|proxy_cookie_path|proxy_headers_hash_bucket_size|proxy_headers_hash_max_size|proxy_hide_header|proxy_http_version|proxy_ignore_client_abort|proxy_ignore_headers|proxy_intercept_errors|proxy_max_temp_file_size|proxy_method|proxy_next_upstream|proxy_no_cache|proxy_pass|proxy_pass_error_message|proxy_pass_header|proxy_pass_request_body|proxy_pass_request_headers|proxy_read_timeout|proxy_redirect|proxy_redirect_errors|proxy_send_lowat|proxy_send_timeout|proxy_set_body|proxy_set_header|proxy_ssl_session_reuse|proxy_store|proxy_store_access|proxy_temp_file_write_size|proxy_temp_path|proxy_timeout|proxy_upstream_fail_timeout|proxy_upstream_max_fails|random_index|read_ahead|real_ip_header|recursive_error_pages|request_pool_size|reset_timedout_connection|resolver|resolver_timeout|return|rewrite|root|rtsig_overflow_events|rtsig_overflow_test|rtsig_overflow_threshold|rtsig_signo|satisfy|satisfy_any|secure_link_secret|send_lowat|send_timeout|sendfile|sendfile_max_chunk|server|server_name|server_name_in_redirect|server_names_hash_bucket_size|server_names_hash_max_size|server_tokens|set|set_real_ip_from|smtp_auth|smtp_capabilities|so_keepalive|source_charset|split_clients|ssi|ssi_silent_errors|ssi_types|ssi_value_length|ssl|ssl_certificate|ssl_certificate_key|ssl_ciphers|ssl_client_certificate|ssl_crl|ssl_dhparam|ssl_engine|ssl_prefer_server_ciphers|ssl_protocols|ssl_session_cache|ssl_session_timeout|ssl_verify_client|ssl_verify_depth|starttls|stub_status|sub_filter|sub_filter_once|sub_filter_types|tcp_nodelay|tcp_nopush|timeout|timer_resolution|try_files|types|types_hash_bucket_size|types_hash_max_size|underscores_in_headers|uninitialized_variable_warn|upstream|use|user|userid|userid_domain|userid_expires|userid_name|userid_p3p|userid_path|userid_service|valid_referers|variables_hash_bucket_size|variables_hash_max_size|worker_connections|worker_cpu_affinity|worker_priority|worker_processes|worker_rlimit_core|worker_rlimit_nofile|worker_rlimit_sigpending|working_directory|xclient|xml_entities|xslt_entities|xslt_stylesheet|xslt_types|ssl_session_tickets|ssl_stapling|ssl_stapling_verify|ssl_ecdh_curve|ssl_trusted_certificate|more_set_headers|ssl_early_data)\b/i,
+  keyword: /\b(?:CONTENT_|DOCUMENT_|GATEWAY_|HTTP_|HTTPS|if_not_empty|PATH_|QUERY_|REDIRECT_|REMOTE_|REQUEST_|SCGI|SCRIPT_|SERVER_|http|events|accept_mutex|accept_mutex_delay|access_log|add_after_body|add_before_body|add_header|addition_types|aio|alias|allow|ancient_browser|ancient_browser_value|auth|auth_basic|auth_basic_user_file|auth_http|auth_http_header|auth_http_timeout|autoindex|autoindex_exact_size|autoindex_localtime|break|charset|charset_map|charset_types|chunked_transfer_encoding|client_body_buffer_size|client_body_in_file_only|client_body_in_single_buffer|client_body_temp_path|client_body_timeout|client_header_buffer_size|client_header_timeout|client_max_body_size|connection_pool_size|create_full_put_path|daemon|dav_access|dav_methods|debug_connection|debug_points|default_type|deny|devpoll_changes|devpoll_events|directio|directio_alignment|disable_symlinks|empty_gif|env|epoll_events|error_log|error_page|expires|fastcgi_buffer_size|fastcgi_buffers|fastcgi_busy_buffers_size|fastcgi_cache|fastcgi_cache_bypass|fastcgi_cache_key|fastcgi_cache_lock|fastcgi_cache_lock_timeout|fastcgi_cache_methods|fastcgi_cache_min_uses|fastcgi_cache_path|fastcgi_cache_purge|fastcgi_cache_use_stale|fastcgi_cache_valid|fastcgi_connect_timeout|fastcgi_hide_header|fastcgi_ignore_client_abort|fastcgi_ignore_headers|fastcgi_index|fastcgi_intercept_errors|fastcgi_keep_conn|fastcgi_max_temp_file_size|fastcgi_next_upstream|fastcgi_no_cache|fastcgi_param|fastcgi_pass|fastcgi_pass_header|fastcgi_read_timeout|fastcgi_redirect_errors|fastcgi_send_timeout|fastcgi_split_path_info|fastcgi_store|fastcgi_store_access|fastcgi_temp_file_write_size|fastcgi_temp_path|flv|geo|geoip_city|geoip_country|google_perftools_profiles|gzip|gzip_buffers|gzip_comp_level|gzip_disable|gzip_http_version|gzip_min_length|gzip_proxied|gzip_static|gzip_types|gzip_vary|if|if_modified_since|ignore_invalid_headers|image_filter|image_filter_buffer|image_filter_jpeg_quality|image_filter_sharpen|image_filter_transparency|imap_capabilities|imap_client_buffer|include|index|internal|ip_hash|keepalive|keepalive_disable|keepalive_requests|keepalive_timeout|kqueue_changes|kqueue_events|large_client_header_buffers|limit_conn|limit_conn_log_level|limit_conn_zone|limit_except|limit_rate|limit_rate_after|limit_req|limit_req_log_level|limit_req_zone|limit_zone|lingering_close|lingering_time|lingering_timeout|listen|location|lock_file|log_format|log_format_combined|log_not_found|log_subrequest|map|map_hash_bucket_size|map_hash_max_size|master_process|max_ranges|memcached_buffer_size|memcached_connect_timeout|memcached_next_upstream|memcached_pass|memcached_read_timeout|memcached_send_timeout|merge_slashes|min_delete_depth|modern_browser|modern_browser_value|mp4|mp4_buffer_size|mp4_max_buffer_size|msie_padding|msie_refresh|multi_accept|open_file_cache|open_file_cache_errors|open_file_cache_min_uses|open_file_cache_valid|open_log_file_cache|optimize_server_names|override_charset|pcre_jit|perl|perl_modules|perl_require|perl_set|pid|pop3_auth|pop3_capabilities|port_in_redirect|post_action|postpone_output|protocol|proxy|proxy_buffer|proxy_buffer_size|proxy_buffering|proxy_buffers|proxy_busy_buffers_size|proxy_cache|proxy_cache_bypass|proxy_cache_key|proxy_cache_lock|proxy_cache_lock_timeout|proxy_cache_methods|proxy_cache_min_uses|proxy_cache_path|proxy_cache_use_stale|proxy_cache_valid|proxy_connect_timeout|proxy_cookie_domain|proxy_cookie_path|proxy_headers_hash_bucket_size|proxy_headers_hash_max_size|proxy_hide_header|proxy_http_version|proxy_ignore_client_abort|proxy_ignore_headers|proxy_intercept_errors|proxy_max_temp_file_size|proxy_method|proxy_next_upstream|proxy_no_cache|proxy_pass|proxy_pass_error_message|proxy_pass_header|proxy_pass_request_body|proxy_pass_request_headers|proxy_read_timeout|proxy_redirect|proxy_redirect_errors|proxy_send_lowat|proxy_send_timeout|proxy_set_body|proxy_set_header|proxy_ssl_session_reuse|proxy_store|proxy_store_access|proxy_temp_file_write_size|proxy_temp_path|proxy_timeout|proxy_upstream_fail_timeout|proxy_upstream_max_fails|random_index|read_ahead|real_ip_header|recursive_error_pages|request_pool_size|reset_timedout_connection|resolver|resolver_timeout|return|rewrite|root|rtsig_overflow_events|rtsig_overflow_test|rtsig_overflow_threshold|rtsig_signo|satisfy|satisfy_any|secure_link_secret|send_lowat|send_timeout|sendfile|sendfile_max_chunk|server|server_name|server_name_in_redirect|server_names_hash_bucket_size|server_names_hash_max_size|server_tokens|set|set_real_ip_from|smtp_auth|smtp_capabilities|so_keepalive|source_charset|split_clients|ssi|ssi_silent_errors|ssi_types|ssi_value_length|ssl|ssl_certificate|ssl_certificate_key|ssl_ciphers|ssl_client_certificate|ssl_crl|ssl_dhparam|ssl_engine|ssl_prefer_server_ciphers|ssl_protocols|ssl_session_cache|ssl_session_timeout|ssl_verify_client|ssl_verify_depth|starttls|stub_status|sub_filter|sub_filter_once|sub_filter_types|tcp_nodelay|tcp_nopush|timeout|timer_resolution|try_files|types|types_hash_bucket_size|types_hash_max_size|underscores_in_headers|uninitialized_variable_warn|upstream|use|user|userid|userid_domain|userid_expires|userid_name|userid_p3p|userid_path|userid_service|valid_referers|variables_hash_bucket_size|variables_hash_max_size|worker_connections|worker_cpu_affinity|worker_priority|worker_processes|worker_rlimit_core|worker_rlimit_nofile|worker_rlimit_sigpending|working_directory|xclient|xml_entities|xslt_entities|xslt_stylesheet|xslt_types|ssl_session_tickets|ssl_stapling|ssl_stapling_verify|ssl_ecdh_curve|ssl_trusted_certificate|more_set_headers|ssl_early_data)\b/i
 })),
   Prism.languages.insertBefore('nginx', 'keyword', { variable: /\$[a-z_]+/i });
 (Prism.languages.scss = Prism.languages.extend('css', {
   comment: { pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/, lookbehind: !0 },
   atrule: {
     pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+[{;])/,
-    inside: { rule: /@[\w-]+/ },
+    inside: { rule: /@[\w-]+/ }
   },
   url: /(?:[-a-z]+-)?url(?=\()/i,
   selector: {
@@ -621,22 +621,22 @@ Prism.languages.clike = {
     inside: {
       parent: { pattern: /&/, alias: 'important' },
       placeholder: /%[-\w]+/,
-      variable: /\$[-\w]+|#\{\$[-\w]+\}/,
-    },
+      variable: /\$[-\w]+|#\{\$[-\w]+\}/
+    }
   },
   property: {
     pattern: /(?:[\w-]|\$[-\w]+|#\{\$[-\w]+\})+(?=\s*:)/,
-    inside: { variable: /\$[-\w]+|#\{\$[-\w]+\}/ },
-  },
+    inside: { variable: /\$[-\w]+|#\{\$[-\w]+\}/ }
+  }
 })),
   Prism.languages.insertBefore('scss', 'atrule', {
     keyword: [
       /@(?:if|else(?: if)?|for|each|while|import|extend|debug|warn|mixin|include|function|return|content)/i,
-      { pattern: /( +)(?:from|through)(?= )/, lookbehind: !0 },
-    ],
+      { pattern: /( +)(?:from|through)(?= )/, lookbehind: !0 }
+    ]
   }),
   Prism.languages.insertBefore('scss', 'important', {
-    variable: /\$[-\w]+|#\{\$[-\w]+\}/,
+    variable: /\$[-\w]+|#\{\$[-\w]+\}/
   }),
   Prism.languages.insertBefore('scss', 'function', {
     placeholder: { pattern: /%[-\w]+/, alias: 'selector' },
@@ -645,8 +645,8 @@ Prism.languages.clike = {
     null: { pattern: /\bnull\b/, alias: 'keyword' },
     operator: {
       pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
-      lookbehind: !0,
-    },
+      lookbehind: !0
+    }
   }),
   (Prism.languages.scss.atrule.inside.rest = Prism.languages.scss);
 !(function (i) {
@@ -666,10 +666,10 @@ Prism.languages.clike = {
       {
         spread: {
           pattern: /\{\.{3}[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\}/,
-          inside: { punctuation: /\.{3}|[{}.]/, 'attr-value': /\w+/ },
-        },
+          inside: { punctuation: /\.{3}|[{}.]/, 'attr-value': /\w+/ }
+        }
       },
-      i.languages.jsx.tag,
+      i.languages.jsx.tag
     ),
     i.languages.insertBefore(
       'inside',
@@ -679,12 +679,12 @@ Prism.languages.clike = {
           pattern: /=(?:\{(?:\{(?:\{[^}]*\}|[^}])*\}|[^}])+\})/i,
           inside: {
             'script-punctuation': { pattern: /^=(?={)/, alias: 'punctuation' },
-            rest: i.languages.jsx,
+            rest: i.languages.jsx
           },
-          alias: 'language-javascript',
-        },
+          alias: 'language-javascript'
+        }
       },
-      i.languages.jsx.tag,
+      i.languages.jsx.tag
     );
   var o = function (t) {
       return t
@@ -709,7 +709,7 @@ Prism.languages.clike = {
                 : '/>' === a.content[a.content.length - 1].content ||
                   n.push({
                     tagName: o(a.content[0].content[1]),
-                    openedBraces: 0,
+                    openedBraces: 0
                   })
               : 0 < n.length && 'punctuation' === a.type && '{' === a.content
               ? n[n.length - 1].openedBraces++
@@ -750,7 +750,7 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
     t = { pattern: /(<|')[^<>']+(?=[>']$)/, lookbehind: !0, alias: 'variable' },
     c = [
       /\\(?![123][0-7]{2})[1-9]/,
-      { pattern: /\\k<[^<>']+>/, inside: { 'group-name': t } },
+      { pattern: /\\k<[^<>']+>/, inside: { 'group-name': t } }
     ];
   (n.languages.regex = {
     charset: {
@@ -763,8 +763,8 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
         'special-escape': e,
         charclass: r,
         backreference: c,
-        escape: a,
-      },
+        escape: a
+      }
     },
     'special-escape': e,
     charclass: r,
@@ -774,12 +774,12 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
     group: [
       {
         pattern: /\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
-        inside: { 'group-name': t },
+        inside: { 'group-name': t }
       },
-      /\)/,
+      /\)/
     ],
     quantifier: /[+*?]|\{(?:\d+,?\d*)\}/,
-    alternation: /\|/,
+    alternation: /\|/
   }),
     [
       'actionscript',
@@ -787,14 +787,14 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
       'flow',
       'javascript',
       'typescript',
-      'vala',
+      'vala'
     ].forEach(function (e) {
       var a = n.languages[e];
       a &&
         (a.regex.inside = {
           'regex-flags': /[a-z]+$/,
           'regex-delimiter': /^\/|\/$/,
-          'language-regex': { pattern: /[\s\S]+/, inside: n.languages.regex },
+          'language-regex': { pattern: /[\s\S]+/, inside: n.languages.regex }
         });
     });
 })(Prism);
@@ -876,7 +876,7 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
           t[r] = i.join('');
         }
       return t.join('\n');
-    },
+    }
   }),
     'undefined' != typeof module && module.exports && (module.exports = e),
     'undefined' != typeof Prism &&
@@ -884,7 +884,7 @@ Prism.languages.tsx = Prism.languages.extend('jsx', typescript);
         'remove-trailing': !0,
         'remove-indent': !0,
         'left-trim': !0,
-        'right-trim': !0,
+        'right-trim': !0
       })),
       Prism.hooks.add('before-sanity-check', function (e) {
         var n = Prism.plugins.NormalizeWhitespace;

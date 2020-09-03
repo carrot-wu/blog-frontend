@@ -9,7 +9,7 @@ import { TagItem } from '@/types/tag';
 export function updTag(tagList: TagItem[]): UpdTagAction {
   return {
     type: UPD_TAG_LIST,
-    payload: { tagList },
+    payload: { tagList }
   };
 }
 // action
@@ -20,7 +20,7 @@ export const thunkUpdTag = (): ThunkAction<
   Action<typeof UPD_TAG_LIST>
 > => async (dispatch, getState) => {
   const {
-    tag: { tagList, tagMap },
+    tag: { tagList, tagMap }
   } = getState();
   if (tagList && tagList.length) {
     return Promise.resolve(Object.values(tagMap));

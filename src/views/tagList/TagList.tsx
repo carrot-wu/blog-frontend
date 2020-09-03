@@ -9,7 +9,7 @@ import {
   Button,
   Loading,
   BottomLine,
-  Article,
+  Article
 } from '@components/index';
 import './style.less';
 import { getArticleList } from '@services/article';
@@ -23,19 +23,19 @@ const TagList: React.FC = () => {
       const { data } = await getArticleList({ pageSize, pageNum, tag: key });
       return data;
     },
-    [key],
+    [key]
   );
   //封装分页详情
   const { load, hasMore, loading, list } = useInfinite(getArticleListFn, {
     pageSize: 5,
-    immediate: true,
+    immediate: true
   });
   // 跳转详情
   const goPost = useCallback(
     (id) => {
       return () => history.push(`/post/${id}`);
     },
-    [history],
+    [history]
   );
   return (
     <div className="home">
