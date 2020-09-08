@@ -1,19 +1,11 @@
-import {
-  UpdTagActionType,
-  UPD_TAG_LIST,
-  TagDefaultState,
-  TagMap
-} from './types';
+import { UpdTagActionType, UPD_TAG_LIST, TagDefaultState, TagMap } from './types';
 
 const defaultState: TagDefaultState = {
   tagList: [],
   tagMap: {}
 };
 
-export default function articleReducer(
-  state = defaultState,
-  action: UpdTagActionType
-): TagDefaultState {
+export default function articleReducer(state = defaultState, action: UpdTagActionType): TagDefaultState {
   switch (action.type) {
     case UPD_TAG_LIST:
       const { tagList } = action.payload;

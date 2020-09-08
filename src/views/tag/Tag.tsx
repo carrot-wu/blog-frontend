@@ -12,13 +12,10 @@ const articleList: any[] = [];
 const Tag: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { tagList, tagMap } = useSelector<AppState, TagDefaultState>(
-    (state) => state.tag
-  );
-  const getTagList = useCallback(
-    async () => dispatch((thunkUpdTag() as unknown) as Promise<TagItem[]>),
-    [dispatch]
-  );
+  const { tagList, tagMap } = useSelector<AppState, TagDefaultState>((state) => state.tag);
+  const getTagList = useCallback(async () => dispatch((thunkUpdTag() as unknown) as Promise<TagItem[]>), [
+    dispatch
+  ]);
   // 跳转详情
   const goPost = useCallback(
     (id) => {
@@ -39,22 +36,14 @@ const Tag: React.FC = () => {
         <div className="tag-center">
           <div className="tag-list">
             {tagList.map((tag) => (
-              <Link
-                className="tag-item"
-                key={tag}
-                to={`/tag/${tagMap[tag].value}`}
-              >
+              <Link className="tag-item" key={tag} to={`/tag/${tagMap[tag].value}`}>
                 {tag}
               </Link>
             ))}
           </div>
           <div className="tag-article-list">
             {articleList.map((article) => (
-              <Article
-                key={article.id}
-                {...article}
-                onClick={goPost(article.id)}
-              />
+              <Article key={article.id} {...article} onClick={goPost(article.id)} />
             ))}
           </div>
         </div>

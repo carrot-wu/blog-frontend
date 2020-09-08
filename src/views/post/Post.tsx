@@ -64,10 +64,7 @@ const Post: React.FC = () => {
             <div className="author">carrotWu</div>
             <div className="time">{time}</div>
           </div>
-          <div
-            className="markdown-body"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
           <div id="toc" />
         </div>
       )}

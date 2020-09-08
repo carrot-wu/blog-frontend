@@ -38,13 +38,7 @@ const Index: React.FC<ArticleItemProps> = (props) => {
           <span>{time}</span>
         </div>
       </div>
-      {imgSrc && (
-        <div
-          className="imgWrapper"
-          style={imgStyle}
-          onClick={() => props.onClick(id)}
-        />
-      )}
+      {imgSrc && <div className="imgWrapper" style={imgStyle} onClick={() => props.onClick(id)} />}
       <div className="abstract">{abstract}</div>
       <Link className="read-more" to={`/post/${id}`}>
         查看更多

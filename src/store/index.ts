@@ -12,8 +12,7 @@ if (process.env.NODE_ENV === 'production' || !isReduxDevtools) {
     rootReducers,
     compose(
       applyMiddleware(reduxThunk),
-      (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-        (window as any).__REDUX_DEVTOOLS_EXTENSION__()
+      (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
     )
   );
 }

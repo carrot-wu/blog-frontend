@@ -13,12 +13,10 @@ export function updTag(tagList: TagItem[]): UpdTagAction {
   };
 }
 // action
-export const thunkUpdTag = (): ThunkAction<
-  void,
-  AppState,
-  null,
-  Action<typeof UPD_TAG_LIST>
-> => async (dispatch, getState) => {
+export const thunkUpdTag = (): ThunkAction<void, AppState, null, Action<typeof UPD_TAG_LIST>> => async (
+  dispatch,
+  getState
+) => {
   const {
     tag: { tagList, tagMap }
   } = getState();

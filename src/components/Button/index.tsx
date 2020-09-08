@@ -12,11 +12,7 @@ interface ButtonProps {
 const Button: React.FC<ButtonProps> = (props) => {
   const { className = '', style, onClick, type = 'primary' } = props;
   return (
-    <div
-      className={`myButton myButton-${type} ${className}`}
-      style={style}
-      onClick={onClick}
-    >
+    <div className={`myButton myButton-${type} ${className}`} style={style} onClick={onClick}>
       <span>{props.children}</span>
     </div>
   );

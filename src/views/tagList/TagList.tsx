@@ -2,15 +2,7 @@ import React, { useCallback } from 'react';
 import { useHistory, useParams } from 'react-router';
 import useInfinite, { LoadFnInterface } from '@hooks/useInfinite';
 import { ArticleListItem } from 'types/article';
-import {
-  BottomBar,
-  Banner,
-  Header,
-  Button,
-  Loading,
-  BottomLine,
-  Article
-} from '@components/index';
+import { BottomBar, Banner, Header, Button, Loading, BottomLine, Article } from '@components/index';
 import './style.less';
 import { getArticleList } from '@services/article';
 

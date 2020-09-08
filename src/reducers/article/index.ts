@@ -1,9 +1,4 @@
-import {
-  UpdArticleActionType,
-  UPD_ARTICLE_LIST,
-  ArticleDefaultState,
-  ArticleMap
-} from './types';
+import { UpdArticleActionType, UPD_ARTICLE_LIST, ArticleDefaultState, ArticleMap } from './types';
 
 const defaultState: ArticleDefaultState = {
   articleIdList: [],
@@ -23,10 +18,7 @@ export default function articleReducer(
         return obj;
       }, {} as ArticleMap);
       return {
-        articleIdList: [
-          ...state.articleIdList,
-          ...articleList.map((article) => article.id)
-        ],
+        articleIdList: [...state.articleIdList, ...articleList.map((article) => article.id)],
         articleMap: { ...state.articleMap, ...articleMap }
       };
     default:

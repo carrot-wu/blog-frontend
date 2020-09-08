@@ -64,12 +64,7 @@ function elementOffset(ele: Element) {
 }
 
 function getScrollTop() {
-  return (
-    window.pageYOffset ||
-    document.documentElement.scrollTop ||
-    document.body.scrollTop ||
-    0
-  );
+  return window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 }
 
 function lastBranches(k: List[]): List[] {
@@ -93,12 +88,7 @@ function lastLeaf(k: List[]): List[] {
   return lastLeafNode;
 }
 
-function nestNode(
-  times: number,
-  node: Element,
-  level: number,
-  index: number
-): List {
+function nestNode(times: number, node: Element, level: number, index: number): List {
   const template: List = {
     index,
     level: null,
@@ -115,11 +105,7 @@ function nestNode(
   return template;
 }
 
-function getLastHeadingParentOf(
-  level: number,
-  headings: List[],
-  index: number
-): List {
+function getLastHeadingParentOf(level: number, headings: List[], index: number): List {
   let tmp = last(headings);
   let parent = {
     index,
@@ -186,11 +172,7 @@ function throttle(fn: Function, interval: number = 500) {
   };
 }
 
-function scrollEaseOut(
-  start: number,
-  destination: number = 0,
-  rate: number = 2
-): void {
+function scrollEaseOut(start: number, destination: number = 0, rate: number = 2): void {
   if (start === destination || rate < 1) {
     return;
   }
@@ -238,9 +220,7 @@ function handlePageChange() {
 
     headingNode.forEach((hNode: Element, index: number) => {
       const distance = Math.abs(
-        elementOffset(
-          hNode.nextElementSibling ? hNode.nextElementSibling : hNode
-        ).top -
+        elementOffset(hNode.nextElementSibling ? hNode.nextElementSibling : hNode).top -
           winScrollTop -
           tocScrollOffset
       );
@@ -252,9 +232,7 @@ function handlePageChange() {
       }
     });
     anchorText = (headingNode[closestAnchorIdx] as HTMLElement).innerText;
-    const tocA = document.querySelector(
-      'a[data-toc-index="' + closestAnchorIdx + '"]'
-    );
+    const tocA = document.querySelector('a[data-toc-index="' + closestAnchorIdx + '"]');
     if (!tocA) {
       return;
     }
@@ -303,9 +281,7 @@ function traceParentAndShow(ele: HTMLElement) {
   }
 }
 
-function showRealUlChildren(
-  element: HTMLElement | Element
-): HTMLCollection | undefined {
+function showRealUlChildren(element: HTMLElement | Element): HTMLCollection | undefined {
   if (!element || !element.children || element.children.length === 0) {
     return undefined;
   }
@@ -360,12 +336,7 @@ function constructElements(item: List) {
   return ul;
 }
 
-function processNode(
-  node: Element,
-  preNode: Element | null,
-  heading: List[],
-  index: number
-) {
+function processNode(node: Element, preNode: Element | null, heading: List[], index: number) {
   const curHeadLevel: number = praseH(node.localName);
   const preHeadLevel: number = preNode ? praseH(preNode.localName) : 0;
 

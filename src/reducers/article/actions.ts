@@ -15,9 +15,7 @@ export function updArticle(articleList: ArticleListItem[]): UpdArticleAction {
 // action
 export const thunkUpdArticle = (
   params: GetArticleListParams
-): ThunkAction<void, AppState, null, Action<typeof UPD_ARTICLE_LIST>> => async (
-  dispatch
-) => {
+): ThunkAction<void, AppState, null, Action<typeof UPD_ARTICLE_LIST>> => async (dispatch) => {
   const { data } = await getArticleList(params);
   dispatch(updArticle(data.list));
   return data;

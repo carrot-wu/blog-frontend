@@ -24,9 +24,7 @@ export default function Header() {
           {headerLinkItem.map((linkItem) => (
             <Link
               className={
-                location.pathname === linkItem.to
-                  ? `${styles.menuItem} ${styles.selected}`
-                  : styles.menuItem
+                location.pathname === linkItem.to ? `${styles.menuItem} ${styles.selected}` : styles.menuItem
               }
               to={linkItem.to}
               key={linkItem.key}

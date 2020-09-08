@@ -1,9 +1,4 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  AxiosInstance,
-  AxiosError
-} from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosInstance, AxiosError } from 'axios';
 import { IResponseConfig } from '@/type';
 
 interface IResErrorConfig {
@@ -106,8 +101,7 @@ export default class Http {
       if (response) {
         const { data = {}, status } = response;
         const { resultMsg } = data;
-        const errorText =
-          resultMsg || codeMessage[status] || response.statusText;
+        const errorText = resultMsg || codeMessage[status] || response.statusText;
         errorParams = {
           status,
           message: errorText,
@@ -135,11 +129,7 @@ export default class Http {
     return this.instance.head<T>(url);
   }
 
-  async get<T>(
-    url: string,
-    params: object = {},
-    config: AxiosRequestConfig = {}
-  ) {
+  async get<T>(url: string, params: object = {}, config: AxiosRequestConfig = {}) {
     const res = await this.instance.get<IResponseConfig<T>>(url, {
       ...config,
       params

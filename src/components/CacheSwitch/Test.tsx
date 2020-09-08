@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  matchPath,
-  SwitchProps,
-  __RouterContext as RouterContext
-} from 'react-router';
+import { matchPath, SwitchProps, __RouterContext as RouterContext } from 'react-router';
 
 interface CacheSwitchProps extends SwitchProps {
   include?: string[];

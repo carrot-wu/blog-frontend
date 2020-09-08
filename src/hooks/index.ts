@@ -5,11 +5,4 @@ import useTitle from './useTitle';
 import useSetState from './useSetState';
 import useNumber from './useNumber';
 
-export {
-  useFormatDate,
-  useInfinite,
-  usePromise,
-  useTitle,
-  useSetState,
-  useNumber
-};
+export { useFormatDate, useInfinite, usePromise, useTitle, useSetState, useNumber };

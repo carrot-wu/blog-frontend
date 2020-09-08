@@ -14,9 +14,7 @@ const Blog: React.FC = () => {
     <div className="blog-index">
       <div className="blog-content">
         <img src={avatar} alt="" className="blog-avatar" />
-        <p className="blog-detail">
-          嗨，我是吴泓锐 (carrotwu)，一名前端开发者。
-        </p>
+        <p className="blog-detail">嗨，我是吴泓锐 (carrotwu)，一名前端开发者。</p>
         <Button onClick={goHome}>进入博客</Button>
         <div className="blog-navigate">
           <a

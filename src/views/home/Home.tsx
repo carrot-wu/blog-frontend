@@ -6,25 +6,14 @@ import useInfinite, { LoadFnInterface } from '@/hooks/useInfinite';
 import { thunkUpdArticle } from '@reducers/article/actions';
 import { ArticleDefaultState } from '@reducers/article/types';
 import { ArticleListItem, GetArticleListRes } from '@type/article';
-import {
-  BottomBar,
-  Banner,
-  Header,
-  Button,
-  Loading,
-  BottomLine,
-  Article
-} from '@/components';
+import { BottomBar, Banner, Header, Button, Loading, BottomLine, Article } from '@/components';
 import './style.less';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   // 获取state article信息
-  const { articleIdList, articleMap } = useSelector<
-    AppState,
-    ArticleDefaultState
-  >((state) => state.article);
+  const { articleIdList, articleMap } = useSelector<AppState, ArticleDefaultState>((state) => state.article);
   const articleList = articleIdList.map((id) => articleMap[id]);
   //定义无线加载类型
   const getArticleList = useCallback<LoadFnInterface<ArticleListItem>>(

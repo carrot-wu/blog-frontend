@@ -6,9 +6,7 @@ export interface IResponseConfig<T = any> {
 }
 
 // 获取函数的参数类型
-export type ReturnParamsType<T extends (...args: any[]) => any> = T extends (
-  ...args: infer P
-) => any
+export type ReturnParamsType<T extends (...args: any[]) => any> = T extends (...args: infer P) => any
   ? P
   : any;
 

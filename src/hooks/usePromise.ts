@@ -4,12 +4,13 @@ import { isArray, isPlainObject } from '@utils/checkType';
 type PromiseFn<R, P extends any[]> = (...args: P) => Promise<R>;
 
 // 一些默认的配置
-interface PromiseOptions {
+interface PromiseOptions<R> {
   // 默认数值， 用于初始化时的显示
-  defaultData?: any;
-  reqInterceptors?: () => void;
-  resInterceptors?: () => void;
-  immediate?: false;
+  defaultData?: Partial<R>;
+  // 是否立即调用 类似于componentDidMount调用该函数
+  immediate?: boolean;
+  // loading默认值 默认为true
+  defaultLoading?: boolean;
 }
 
 // 返回的对象类型
@@ -25,17 +26,15 @@ interface PromiseRes<T, R> {
 }
 
 // 函数重载
-function usePromise<R, P extends any[]>(
-  promiseFn: PromiseFn<R, P>
-): PromiseRes<PromiseFn<R, P>, R>;
+function usePromise<R, P extends any[]>(promiseFn: PromiseFn<R, P>): PromiseRes<PromiseFn<R, P>, R>;
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
-  depListOrOptions: any[] | PromiseOptions
+  depListOrOptions: any[] | PromiseOptions<R>
 ): PromiseRes<PromiseFn<R, P>, R>;
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
   depList: any[],
-  options: PromiseOptions
+  options: PromiseOptions<R>
 ): PromiseRes<PromiseFn<R, P>, R>;
 /**
  * 用于封装请求的自定义hooks方法
@@ -46,19 +45,18 @@ function usePromise<R, P extends any[]>(
  */
 function usePromise<R, P extends any[]>(
   promiseFn: PromiseFn<R, P>,
-  depList?: any[] | PromiseOptions,
-  options?: PromiseOptions
+  depList?: any[] | PromiseOptions<R>,
+  options?: PromiseOptions<R>
 ): PromiseRes<PromiseFn<R, P>, R> {
   //重载
-  let _options: PromiseOptions;
+  let _options: PromiseOptions<R>;
   let _depList: any[];
   _depList = isArray(depList) ? depList : [];
-  _options =
-    isPlainObject(depList) && !isArray(depList) ? depList : options || {};
+  _options = isPlainObject(depList) && !isArray(depList) ? depList : options || {};
 
   const { defaultData = { data: {} }, immediate } = _options;
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState<R>(defaultData);
+  const [data, setData] = useState<R>(defaultData as R);
   const [error, setError] = useState<Error | null>(null);
 
   // 返回出去的promise函数
@@ -76,8 +74,8 @@ function usePromise<R, P extends any[]>(
         setError(e);
         return Promise.reject(e);
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [..._depList]
   );
 
