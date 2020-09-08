@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.less';
+import styles from './styles.module.scss';
 import avatar from 'assets/images/avatar.jpg';
 import { Link, useLocation } from 'react-router-dom';
 

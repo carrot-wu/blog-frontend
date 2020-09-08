@@ -19,23 +19,10 @@
     "noImplicitThis": false,
     "noEmit": true,
     "jsx": "preserve",
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"],
-      "@components/*": ["components/*"],
-      "@/assets/*": ["assets/*"],
-      "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"],
-      "@routers/*": ["routers/*"],
-      "@store/*": ["store/*"],
-      "@type/*": ["types/*"],
-      "@views/*": ["views/*"],
-      "@services/*": ["services/*"],
-      "@iconfont/*": ["iconfont/*"],
-      "@reducers/*": ["reducers/*"]
-    }
+    "baseUrl": "./src"
   },
   "include": [
     "src"
-  ]
+  ],
+  "extends": "./alias.tsconfig.json"
 }

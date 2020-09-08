@@ -1,13 +1,13 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { AppState } from '@/reducers';
 import useInfinite, { LoadFnInterface } from '@/hooks/useInfinite';
 import { thunkUpdArticle } from '@reducers/article/actions';
 import { ArticleDefaultState } from '@reducers/article/types';
 import { ArticleListItem, GetArticleListRes } from '@type/article';
 import { BottomBar, Banner, Header, Button, Loading, BottomLine, Article } from '@/components';
-import './style.less';
+import './style.scss';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();

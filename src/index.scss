@@ -333,16 +333,16 @@ article {
 }
 
 @import 'assets/prism/index';
-@import 'assets/less/variable';
+@import 'assets/scss/variable.scss';
 #root {
   width: 100%;
   height: 100%;
-  --toc-color: @primary-color;
+  --toc-color: $primary-color;
   #toc {
     margin-left: 420px;
   }
   code {
-    color: @markdown-code-color;
+    color: $markdown-code-color;
   }
   .markdown-body {
     box-sizing: border-box;

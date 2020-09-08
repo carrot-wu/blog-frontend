@@ -1,5 +1,5 @@
 import React, { CSSProperties, MouseEventHandler } from 'react';
-import './styles.less';
+import './styles.scss';
 
 interface ButtonProps {
   children: React.ReactElement | string;

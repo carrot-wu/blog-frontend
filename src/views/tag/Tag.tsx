@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './styles.less';
+import './styles.scss';
 import { AppState } from 'reducers';
 import { TagDefaultState } from 'reducers/tag/types';
 import { TagItem } from 'types/tag';

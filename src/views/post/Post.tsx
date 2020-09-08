@@ -3,10 +3,10 @@ import generatoc from '@utils/generatoc';
 import marked from 'marked';
 import useFormatDate from '@hooks/useFormatDate';
 import { Loading } from '@components/index';
-import { useHistory, useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router-dom';
 import { usePromise, useTitle } from '@hooks/index';
 import { getArticleById } from '@services/article';
-import './styles.less';
+import './styles.scss';
 import './generatoc.css';
 
 const gecContent = '.content';

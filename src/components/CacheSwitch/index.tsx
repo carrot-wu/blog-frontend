@@ -1,5 +1,5 @@
 import React, { useRef, memo } from 'react';
-import { useLocation, matchPath, SwitchProps } from 'react-router';
+import { useLocation, matchPath, SwitchProps } from 'react-router-dom';
 
 interface CacheSwitchProps extends SwitchProps {
   include?: string[];

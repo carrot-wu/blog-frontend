@@ -1,7 +1,7 @@
 import React, { memo, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import useFormatDate from 'hooks/useFormatDate';
-import './style.less';
+import './style.scss';
 import { ArticleListItem } from 'types/article';
 
 interface ArticleItemProps extends ArticleListItem {

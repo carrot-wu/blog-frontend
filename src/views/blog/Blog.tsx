@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
-import { useHistory } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import Button from 'components/Button';
-import './styles.less';
+import './styles.scss';
 import avatar from 'assets/images/avatar.jpg';
 import { BottomBar } from 'components';
 

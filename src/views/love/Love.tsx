@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.less';
+import './styles.scss';
 import { Header } from 'components';
 
 const Love: React.FC = () => {

@@ -1,4 +1,4 @@
-@import '../../assets/less/variable';
+@import '../../assets/scss/variable.scss';
 
 .myButton {
   display: inline-flex;
@@ -10,8 +10,8 @@
   padding: 8px 22px;
   cursor: pointer;
   &-primary {
-    background-color: @primary-color;
-    border-color: @primary-color;
+    background-color: $primary-color;
+    border-color: $primary-color;
   }
   &-normal {
     background-color: inherit;
