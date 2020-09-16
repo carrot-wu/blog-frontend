@@ -17,7 +17,7 @@ export default class Comment extends PureComponent<CommentProps> {
       appId: valineAppId,
       appKey: valineAppKey,
       //path: `/posttest`,
-      avatar: 'mp',
+      avatar: 'robohash',
       placeholder: '感谢您的评论~~',
       enableQQ: true,
       requiredFields: ['nick'],

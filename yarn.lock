@@ -1156,6 +1156,11 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
+"@carrotwu/generatoc@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@carrotwu/generatoc/-/generatoc-1.0.1.tgz#c7393bef38cabbf96d078e09f1d0f6b5f31c9297"
+  integrity sha512-xckeoRL00Wj5MkYd3qYzeUm+med872owI64Pr/udBnUPEBx6WQXqnpa4pDhh+t5EvknMxWu/2ezQZ48EizFkPw==
+
 "@carrotwu/valine@^1.0.4":
   version "1.0.4"
   resolved "https://registry.npmjs.org/@carrotwu/valine/-/valine-1.0.4.tgz#efba14fc713001fe4ced149092353194720a3c92"

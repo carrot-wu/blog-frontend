@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import generatoc from '@utils/generatoc';
+import generatoc from '@carrotwu/generatoc';
 import marked from 'marked';
 import useFormatDate from '@hooks/useFormatDate';
 import { Loading, Comment } from '@components/index';
@@ -7,7 +7,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { usePromise, useTitle } from '@hooks/index';
 import { getArticleById } from '@services/article';
 import './styles.scss';
-import './generatoc.css';
+import '@carrotwu/generatoc/src/style/main.css';
 
 const gecContent = '.content';
 const gecHeading = ['h2', 'h3', 'h4', 'h5'];
