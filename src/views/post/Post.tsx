@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import generatoc from '@utils/generatoc';
 import marked from 'marked';
 import useFormatDate from '@hooks/useFormatDate';
-import { Loading } from '@components/index';
+import { Loading, Comment } from '@components/index';
 import { useHistory, useParams } from 'react-router-dom';
 import { usePromise, useTitle } from '@hooks/index';
 import { getArticleById } from '@services/article';
@@ -66,6 +66,7 @@ const Post: React.FC = () => {
           </div>
           <div className="markdown-body" dangerouslySetInnerHTML={{ __html: html }} />
           <div id="toc" />
+          <Comment postId={id} />
         </div>
       )}
     </div>

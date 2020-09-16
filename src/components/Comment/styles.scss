@@ -1,0 +1,16 @@
+@import '../../assets/scss/variable.scss';
+
+#ValineComment {
+  .vpower {
+    display: none;
+  }
+
+  .admin {
+    color: $primary-color;
+    &::after {
+      content: '（作者）';
+      color: red;
+    }
+  }
+}
+
