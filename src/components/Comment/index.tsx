@@ -16,7 +16,7 @@ export default class Comment extends PureComponent<CommentProps> {
       el: '#ValineComment',
       appId: valineAppId,
       appKey: valineAppKey,
-      path: `/posttest`,
+      //path: `/posttest`,
       avatar: 'mp',
       placeholder: '感谢您的评论~~',
       enableQQ: true,
@@ -24,7 +24,7 @@ export default class Comment extends PureComponent<CommentProps> {
       adminName: 'carrotwu',
       adminEmail: '542425997@qq.com',
       adminImg: avatar,
-      //path: `/post/${this.props.postId}`
+      path: `/post/${this.props.postId}`
     });
   }
 
