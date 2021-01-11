@@ -7,5 +7,5 @@ RUN yarn build
 # 选择更小体积的基础镜像
 FROM docker.carrotwu.com/library/nginx:alpine
 COPY --from=builder ./build/ /usr/share/nginx/html
-COPY  nginx.conf /etc/nginx/
+COPY --from=builder ./nginx.conf /etc/nginx/
 EXPOSE 8888
