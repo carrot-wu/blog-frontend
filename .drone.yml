@@ -33,6 +33,7 @@ steps:
       debug: true
       dockerfile: Dockerfile # 使用 Dockerfile 的名字
       repo: docker.carrotwu.com/blog/blog-web
+      mirror: https://docker.mirrors.ustc.edu.cn/
       registry: docker.carrotwu.com
       username:
         from_secret: dockerUserName
