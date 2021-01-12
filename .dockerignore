@@ -1,4 +1,7 @@
 # dependencies
+# 这一步为什么需要让dockerfile把node_modules拉入 因为 在drone哪里我们把缓存给重新拉出来了 在当前dockerfile中我们是并没有install的
+# install 的步骤放在了drone配置中 所以这边不允许注释掉
+# 如果install的操作是放在dockerfile中操作的话 那么直接注释掉即可
 node_modules
 /bld
 /.idea
