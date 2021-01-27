@@ -2,7 +2,6 @@ kind: pipeline
 type: docker
 name: blogFrontend
 
-
 steps:
   - name: 生成部署配置
     image: busybox
