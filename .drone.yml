@@ -21,7 +21,7 @@ steps:
     image: danielgormly/drone-plugin-kube:0.0.1
     settings:
       server: https://172.17.16.12:6443            # k8s 集群地址
-      kubernetes_token:
+      token:
         from_secret: k8sToken
       namespace: blog-project
       template: deployment                      # 容器名                  # 需要被部署的镜像 TAG
