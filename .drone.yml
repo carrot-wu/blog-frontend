@@ -4,6 +4,20 @@ name: blogFrontend
 
 
 steps:
+  - name: 生成部署配置
+    image: busybox
+    commands:
+      - echo $DRONE_COMMIT
+      - '[ -n "$DRONE_COMMIT" ] && (
+          sed -i "s/TAG/${DRONE_COMMIT_SHA}/g" deployment.yml;
+          sed -i "s/APP_NAME/blog-web/g" deployment.yml;
+          sed -i "s/IMAGE_NAME/blog-web/g" deployment.yml;
+          sed -i "s/DOMAIN_NAME/www/g" deployment.yml;
+          sed -i "s/NAMESPACE/blog-project/g" deployment.yml
+        )'
+      - sed -i "s/ENV_BUILD_DATE/$(date +'%Y-%m-%y %T')/g" deployment.yml
+      - cat deployment.yml
+
   - name: deployment
     image: quay.io/honestbee/drone-kubernetes
     settings:
@@ -16,4 +30,4 @@ steps:
       container: blog-web                          # 容器名                  # 需要被部署的镜像 TAG
 trigger:
   branch:
-  - master
+    - master
