@@ -1,4 +1,5 @@
 kind: pipeline
+type: default
 name: blogFrontend
 
 
@@ -7,7 +8,7 @@ steps:
     image: quay.io/honestbee/drone-kubernetes
     settings:
       kubernetes_server: https://172.17.16.12:6443            # k8s 集群地址
-      kubernetes_token: eyJhbGciOiJSUzI1NiIsImtpZCI6IldKanNDeUR5SHJ6VTF3bWFRbl9NN1JEQUR5cmxRM1RoUHNsc1A3ZWdtYTAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4taDc1azciLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjM0Njg1YjQyLTAwN2YtNDA0Yy04MWUyLTQ2NDk4ODliMzgxNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.F-5Hs6Ghq2FYQM5vzpShvD-F7e8z4Rd6ybqjW-i98t-VQDyyyny0WLMYNsBP8m2qtssoeM-vGu3RrXBuTZ7YKQ8dM80qOEJNSidSW76Lpkp2ke-ghhJKC3o5txu70YxX4J4NzrfeWaL5Q8vThcdHrsxib4YkWda0xezG4Qna4QatCdIZiaO_f0cn4IM4y1ge7XjkkSxHbHCFUQd9bpFxJzmSqeflAGzg4b3iYmAFbO7JKIV-ZjmhDviTtmqIh2gAwoSz2VD5tQpF2LaNwTmYGUhTE7rp-QTfrs8mPmbotAvJrTrn07EZ8YedOqNpKInGCtzti5El8tHflJ_5k4jMGA
+      kubernetes_token: k8sToken
       namespace: blog-project
       deployment: deployment
       repo: docker.carrotwu.com/blog/blog-web
