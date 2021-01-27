@@ -42,7 +42,11 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
-    "lint": "eslint src --ext .ts --ext .tsx --fix"
+    "lint": "eslint src --ext .ts --ext .tsx --fix",
+    "docker:package": "docker build -f NodeModulesDockerfile -t docker.carrotwu.com/blog/blog-web-node-modules . --no-cache",
+    "docker:push": "docker push docker.carrotwu.com/blog/blog-web-node-modules",
+    "docker:build": "yarn docker:package && yarn docker:push"
+
   },
   "eslintConfig": {
     "extends": "react-app"

@@ -1,0 +1,84 @@
+kind: pipeline
+type: docker
+name: blogFrontend
+
+
+steps:
+  - name: restore-cache
+    #name: 取出缓存 # 把之前缓存好的数据取出
+    image: drillster/drone-volume-cache
+    settings:
+      restore: true
+      mount: # 缓存挂载的文件夹
+        - ./yarn-cache
+        - ./node_modules
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: install安装依赖
+    #name: 安装依赖
+    image: docker.carrotwu.com/library/node:alpine #
+    #image: http://nginx/library/node:alpine # 使用了本地Registry的nodejs，加快拉取速度
+    environment:
+      SASS_BINARY_SITE: https://npm.taobao.org/mirrors/node-sass/
+    commands:
+      - yarn config set cache-folder ./yarn-cache
+      - yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
+
+  - name: build
+    #name: 打包构建生成镜像
+    image: plugins/docker
+    settings:
+      debug: true
+      dockerfile: Dockerfile # 使用 Dockerfile 的名字
+      repo: docker.carrotwu.com/blog/blog-web
+      mirror: https://docker.mirrors.ustc.edu.cn/
+      registry: docker.carrotwu.com
+      username:
+        from_secret: dockerUserName
+      password:
+        from_secret: dockerPassword
+
+  - name: rebuild-cache
+    #name: 保存缓存 # 把依赖和 npm 缓存放到缓存里
+    image: drillster/drone-volume-cache
+    settings:
+      rebuild: true
+      mount:
+        - ./yarn-cache
+        - ./node_modules
+    volumes:
+      - name: cache
+        path: /cache
+
+  - name: deploy
+    #name: 链接远程机器部署 # 用SSH连接到宿主机器运行部署命令
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: sshHost
+      username:
+        from_secret: sshAccount
+      password:
+        from_secret: sshPassword
+      port:
+        from_secret: sshPort
+      command_timeout: 30m # ssh命令行执行超时时间，30分钟
+      script_stop: false # 设置为false，遇到第一次错误会继续运行后面的命令
+      # script定义的是所要运行的command
+      script:
+        - docker stop blog-web;
+        - docker rm blog-web;
+        - docker image rm docker.carrotwu.com/blog/blog-web;
+        - cd docker-direction;
+        - docker-compose up -d;
+# 声明并挂载缓存文件夹，宿主机的路径为 /tmp/cache
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache
+
+trigger:
+  branch:
+  - master
