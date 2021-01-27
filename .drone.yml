@@ -23,8 +23,10 @@ steps:
       server: https://172.17.16.12:6443            # k8s 集群地址
       token:
         from_secret: k8sToken
+      ca:
+        from_secret: k8sCa
       namespace: blog-project
-      template: deployment                      # 容器名                  # 需要被部署的镜像 TAG
+      template: deployment.yaml                      # 容器名                  # 需要被部署的镜像 TAG
 trigger:
   branch:
     - master
