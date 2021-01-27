@@ -8,8 +8,8 @@ node_modules
 # testing
 /coverage
 
-# src
-/src
+# production
+/dist
 
 npm-debug.log*
 yarn-debug.log*
