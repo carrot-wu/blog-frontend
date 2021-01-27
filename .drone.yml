@@ -25,7 +25,6 @@ steps:
         from_secret: k8sToken
       ca:
         from_secret: k8sCa
-      namespace: blog-project
       template: deployment.yml                      # 容器名                  # 需要被部署的镜像 TAG
 trigger:
   branch:

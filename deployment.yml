@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: APP_NAME
-        image: docker.carrotwu.com/blog/IMAGE_NAME:TAG
+        image: docker.carrotwu.com/blog/IMAGE_NAME
         imagePullPolicy: Always
         resources:
           requests:
