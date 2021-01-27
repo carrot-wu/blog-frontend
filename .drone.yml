@@ -3,46 +3,15 @@ name: blogFrontend
 
 
 steps:
-  - name: 生成部署配置
-    image: busybox
-    commands:
-      - echo $DRONE_COMMIT
-      - '[ -n "$DRONE_COMMIT" ] && (
-          sed -i "s/TAG/${DRONE_COMMIT_SHA}/g" deployment.yml;
-          sed -i "s/APP_NAME/blog-web/g" deployment.yml;
-          sed -i "s/IMAGE_NAME/blog-web/g" deployment.yml;
-          sed -i "s/DOMAIN_NAME/www/g" deployment.yml;
-          sed -i "s/NAMESPACE/blog-project/g" deployment.yml
-        )'
-      - sed -i "s/ENV_BUILD_DATE/$(date +'%Y-%m-%y %T')/g" deployment.yml
-      - cat deployment.yml
-
-  - name: build
-    #name: 打包构建生成镜像
-    image: plugins/docker
-    settings:
-      debug: true
-      dockerfile: Dockerfile # 使用 Dockerfile 的名字
-      repo: docker.carrotwu.com/blog/blog-web
-      mirror: https://docker.mirrors.ustc.edu.cn/
-      registry: docker.carrotwu.com
-      tag: ${DRONE_COMMIT_SHA}
-      username:
-        from_secret: dockerUserName
-      password:
-        from_secret: dockerPassword
-
   - name: deployment
     image: quay.io/honestbee/drone-kubernetes
     settings:
       kubernetes_server: https://172.17.16.12:6443            # k8s 集群地址
-      kubernetes_token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJbXRwWkNJNklsZEthbk5EZVVSNVNISjZWVEYzYldGUmJsOU5OMUpFUVVSNWNteFJNMVJvVUhOc2MxQTNaV2R0WVRBaWZRLmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUprWldaaGRXeDBJaXdpYTNWaVpYSnVaWFJsY3k1cGJ5OXpaWEoyYVdObFlXTmpiM1Z1ZEM5elpXTnlaWFF1Ym1GdFpTSTZJbVJsWm1GMWJIUXRkRzlyWlc0dGFEYzFhemNpTENKcmRXSmxjbTVsZEdWekxtbHZMM05sY25acFkyVmhZMk52ZFc1MEwzTmxjblpwWTJVdFlXTmpiM1Z1ZEM1dVlXMWxJam9pWkdWbVlYVnNkQ0lzSW10MVltVnlibVYwWlhNdWFXOHZjMlZ5ZG1salpXRmpZMjkxYm5RdmMyVnlkbWxqWlMxaFkyTnZkVzUwTG5WcFpDSTZJak0wTmpnMVlqUXlMVEF3TjJZdE5EQTBZeTA0TVdVeUxUUTJORGs0T0RsaU16Z3hOaUlzSW5OMVlpSTZJbk41YzNSbGJUcHpaWEoyYVdObFlXTmpiM1Z1ZERwa1pXWmhkV3gwT21SbFptRjFiSFFpZlEuRi01SHM2R2hxMkZZUU01dnpwU2h2RC1GN2U4ejRSZDZ5YnFqVy1pOTh0LVZRRHl5eW55MFdMTVlOc0JQOG0ycXRzc29lTS12R3UzUnJYQnVUWjdZS1E4ZE04MHFPRUpOU2lkU1c3Nkxwa3Aya2UtZ2hoSktDM281dHh1NzBZeFg0SjROenJmZVdhTDVROHZUaGNkSHJzeGliNFlrV2RhMHhlekc0UW5hNFFhdENkSVppYU9fZjBjbjRJTTR5MWdlN1hqa2tTeEhiSENGVVFkOWJwRnhKem1TcWVmbEFHemc0YjNpWW1BRmJPN0pLSVYtWmptaER2aVR0bXFJaDJnQXdvU3oyVkQ1dFFwRjJMYU53VG1ZR1VoVEU3cnAtUVRmcnM4bVBtYm90QXZKclRybjA3RVo4WWVkT3FOcEtJbkdDdHp0aTVFbDh0SGZsSl81azRqTUdB              # 有权限部署的 k8s token
+      kubernetes_token: eyJhbGciOiJSUzI1NiIsImtpZCI6IldKanNDeUR5SHJ6VTF3bWFRbl9NN1JEQUR5cmxRM1RoUHNsc1A3ZWdtYTAifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6ImRlZmF1bHQtdG9rZW4taDc1azciLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC5uYW1lIjoiZGVmYXVsdCIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjM0Njg1YjQyLTAwN2YtNDA0Yy04MWUyLTQ2NDk4ODliMzgxNiIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpkZWZhdWx0OmRlZmF1bHQifQ.F-5Hs6Ghq2FYQM5vzpShvD-F7e8z4Rd6ybqjW-i98t-VQDyyyny0WLMYNsBP8m2qtssoeM-vGu3RrXBuTZ7YKQ8dM80qOEJNSidSW76Lpkp2ke-ghhJKC3o5txu70YxX4J4NzrfeWaL5Q8vThcdHrsxib4YkWda0xezG4Qna4QatCdIZiaO_f0cn4IM4y1ge7XjkkSxHbHCFUQd9bpFxJzmSqeflAGzg4b3iYmAFbO7JKIV-ZjmhDviTtmqIh2gAwoSz2VD5tQpF2LaNwTmYGUhTE7rp-QTfrs8mPmbotAvJrTrn07EZ8YedOqNpKInGCtzti5El8tHflJ_5k4jMGA
       namespace: blog-project
       deployment: deployment
       repo: docker.carrotwu.com/blog/blog-web
-      container: blog-web                          # 容器名
-      tag:
-        - ${DRONE_COMMIT_SHA}                    # 需要被部署的镜像 TAG
+      container: blog-web                          # 容器名                  # 需要被部署的镜像 TAG
 trigger:
   branch:
   - master
