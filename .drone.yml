@@ -16,6 +16,21 @@ steps:
         )'
       - sed -i "s/ENV_BUILD_DATE/$(date +'%Y-%m-%y %T')/g" deployment.yml
       - cat deployment.yml
+      -
+  - name: build
+    #name: 打包构建生成镜像
+    image: plugins/docker
+    settings:
+      debug: true
+      dockerfile: Dockerfile # 使用 Dockerfile 的名字
+      repo: docker.carrotwu.com/blog/blog-web
+      mirror: https://docker.mirrors.ustc.edu.cn/
+      registry: docker.carrotwu.com
+      tag: ${DRONE_COMMIT_SHA}
+      username:
+        from_secret: dockerUserName
+      password:
+        from_secret: dockerPassword
 
   - name: deployment
     image: danielgormly/drone-plugin-kube:0.0.1
