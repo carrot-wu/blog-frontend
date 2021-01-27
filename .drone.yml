@@ -16,7 +16,10 @@ steps:
         )'
       - sed -i "s/ENV_BUILD_DATE/$(date +'%Y-%m-%y %T')/g" deployment.yml
       - cat deployment.yml
-      -
+
+  - name: 缓存
+    image: docker.carrotwu.com/blog/blog-web-node-modules
+
   - name: build
     #name: 打包构建生成镜像
     image: plugins/docker

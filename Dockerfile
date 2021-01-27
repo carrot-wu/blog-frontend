@@ -1,4 +1,4 @@
-FROM docker.carrotwu.com/blog/blog-web-node-modules as builder
+FROM docker.carrotwu.com/library/node:alpine as builder
 MAINTAINER "carrotWu@gmail.com"
 COPY . .
 RUN yarn build
