@@ -8,7 +8,8 @@ steps:
     image: quay.io/honestbee/drone-kubernetes
     settings:
       kubernetes_server: https://172.17.16.12:6443            # k8s 集群地址
-      kubernetes_token: k8sToken
+      kubernetes_token:
+        from_secret: k8sToken
       namespace: blog-project
       deployment: deployment
       repo: docker.carrotwu.com/blog/blog-web
