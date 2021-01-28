@@ -41,14 +41,15 @@ steps:
         from_secret: dockerPassword
 
   - name: deployment
-    image: danielgormly/drone-plugin-kube:0.0.1
+    image: quay.io/honestbee/drone-kubernetes
     settings:
-      server: https://172.17.16.12:6443            # k8s 集群地址
-      token:
+      kubernetes_server: https://172.17.16.12:6443            # k8s 集群地址
+      namespace: blog-project
+      kubernetes_token:
         from_secret: k8sToken
       ca:
         from_secret: k8sCa
-      template: deployment.yml                      # 容器名                  # 需要被部署的镜像 TAG
+      deployment: deployment.yml                      # 容器名                  # 需要被部署的镜像 TAG
 trigger:
   branch:
     - master
