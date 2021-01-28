@@ -49,7 +49,7 @@ steps:
         from_secret: k8sToken
       ca:
         from_secret: k8sCa
-      deployment: deployment.yml                      # 容器名
+      deployment: deployment                     # 容器名
       repo: docker.carrotwu.com/blog/blog-web
       container: blog-web
       tag:
