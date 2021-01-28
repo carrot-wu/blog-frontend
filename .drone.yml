@@ -56,7 +56,6 @@ steps:
         - ${DRONE_COMMIT_SHA}
       # 需要被部署的镜像 TAG
     commands:
-      - ll
       - cat deployment.yml
       - kubectl apply  -f deployment.yml
 
