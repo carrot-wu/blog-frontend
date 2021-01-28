@@ -19,6 +19,8 @@ steps:
 
   - name: 缓存
     image: docker.carrotwu.com/blog/blog-web-node-modules
+    commands:
+      - ls -la
 
   - name: build
     #name: 打包构建生成镜像
