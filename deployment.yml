@@ -63,3 +63,9 @@ spec:
       targetPort: 8888
   selector:
     k8s-app: APP_NAME
+
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: blog-project
