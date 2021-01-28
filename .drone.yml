@@ -21,6 +21,7 @@ steps:
     image: docker.carrotwu.com/blog/blog-web-node-modules
     commands:
       - ls -la
+      - ln -sfn /node_modules node_modules
       - yarn build
       - ls -la
 
