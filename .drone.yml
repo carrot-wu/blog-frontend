@@ -17,7 +17,7 @@ steps:
       - sed -i "s/ENV_BUILD_DATE/$(date +'%Y-%m-%y %T')/g" deployment.yml
       - cat deployment.yml
 
-  - name: 缓存
+  - name: 打包构建
     image: docker.carrotwu.com/blog/blog-web-node-modules
     commands:
       - ls -la
@@ -25,7 +25,7 @@ steps:
       - yarn build
       - ls -la
 
-  - name: build
+  - name: 生成镜像
     #name: 打包构建生成镜像
     image: plugins/docker
     settings:
@@ -49,7 +49,12 @@ steps:
         from_secret: k8sToken
       ca:
         from_secret: k8sCa
-      deployment: deployment.yml                      # 容器名                  # 需要被部署的镜像 TAG
+      deployment: deployment.yml                      # 容器名
+      repo: docker.carrotwu.com/blog/blog-web
+      container: blog-web
+      tag:
+        - ${DRONE_COMMIT_SHA}
+      # 需要被部署的镜像 TAG
 trigger:
   branch:
     - master
