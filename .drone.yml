@@ -21,6 +21,8 @@ steps:
     image: docker.carrotwu.com/blog/blog-web-node-modules
     commands:
       - ls -la
+      - yarn build
+      - ls -la
 
   - name: build
     #name: 打包构建生成镜像
