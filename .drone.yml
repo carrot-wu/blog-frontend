@@ -41,13 +41,13 @@ steps:
         from_secret: dockerPassword
 
   - name: deployment
-    image: quay.io/honestbee/drone-kubernetes
+    image: sinlead/drone-kubectl
     settings:
       kubernetes_server: https://172.17.16.12:6443            # k8s 集群地址
       namespace: blog-project
       kubernetes_token:
         from_secret: k8sToken
-      ca:
+      kubernetes_cert:
         from_secret: k8sCa
       deployment: blog-web                     # 容器名
       repo: docker.carrotwu.com/blog/blog-web
@@ -55,6 +55,9 @@ steps:
       tag:
         - ${DRONE_COMMIT_SHA}
       # 需要被部署的镜像 TAG
+      commands:
+        - cat deployment.yaml
+        - kubectl create -f deployment.yaml
 trigger:
   branch:
     - master

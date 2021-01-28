@@ -11,7 +11,9 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
+      # 滚动过程中最多可创建的pod数量
       maxSurge: 1
+      # 最多有几个pod处于无法服务状态
       maxUnavailable: 1
   minReadySeconds: 3
   selector:
