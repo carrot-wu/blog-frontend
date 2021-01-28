@@ -56,7 +56,6 @@ steps:
         - ${DRONE_COMMIT_SHA}
       # 需要被部署的镜像 TAG
       commands:
-        - cat deployment.yaml
         - kubectl create -f deployment.yaml
 trigger:
   branch:
