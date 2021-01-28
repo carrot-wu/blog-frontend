@@ -59,6 +59,7 @@ steps:
       - ll
       - cat deployment.yml
       - kubectl apply  -f deployment.yml
+
 trigger:
   branch:
     - master
