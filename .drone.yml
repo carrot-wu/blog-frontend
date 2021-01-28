@@ -55,8 +55,10 @@ steps:
       tag:
         - ${DRONE_COMMIT_SHA}
       # 需要被部署的镜像 TAG
-      commands:
-        - kubectl apply -f deployment.yml
+    commands:
+      - ll
+      - cat deployment.yml
+      - kubectl apply  -f deployment.yml
 trigger:
   branch:
     - master
