@@ -8,8 +8,7 @@
 # testing
 /coverage
 
-# production
-/dist
+# 这里不能把dist文件 ignore掉 因为在docker中不再内部进行build 而是直接把打包好的文件拉进dockerfile中
 
 npm-debug.log*
 yarn-debug.log*
