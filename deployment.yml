@@ -35,6 +35,13 @@ spec:
         ports:
         - name: http
           containerPort: 8888
+        volumeMounts:
+          - name: host-time
+            mountPath: /etc/localtime
+      volumes:
+        - name: host-time
+          hostPath:
+            path: /etc/localtime
 ---
 apiVersion: v1
 kind: Service
