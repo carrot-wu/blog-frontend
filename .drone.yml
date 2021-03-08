@@ -24,7 +24,6 @@ steps:
     commands:
       - yarn config set cache-folder ./.yarn-cache --global
       - yarn install --frozen-lockfile --registry=https://registry.npm.taobao.org
-
   - name: build
     #name: 打包构建生成镜像
     image: plugins/docker
